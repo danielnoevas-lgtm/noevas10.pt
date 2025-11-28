@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="form-container">
+    <h2>Entrar</h2>
+
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Palavra-passe">
+
+    <button onclick="doLogin()">Entrar</button>
+
+    <p>Não tens conta? <a href="signup.html">Criar conta</a></p>
+  </div>
+
+  <script src="auth-client.js"></script>
+
+  <script>
+    function doLogin() {
+      login(
+        document.getElementById("email").value,
+        document.getElementById("password").value
+      );
+    }
+  </script>
+</body>
+</html>

@@ -1,56 +1,152 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-PT">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Noevas10 — Sobre</title>
-  <meta name="description" content="Sobre Noevas10 — visão, missão e valores.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sobre Mim — Noevas10</title>
   <link rel="stylesheet" href="style.css">
+  
+  <style>
+    .hero-sobre {
+      padding: 100px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #8b5cf6, #3aa8ff);
+      color: #fff;
+      border-radius: 0 0 32px 32px;
+      box-shadow: 0 10px 50px rgba(0,0,0,0.45);
+    }
+    .hero-sobre h1 {
+      font-size: 44px;
+      font-weight: 800;
+    }
+
+    .sobre-wrap {
+      max-width: 980px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 28px;
+      border-radius: 20px;
+      margin-bottom: 36px;
+      box-shadow: 0 10px 34px rgba(0,0,0,0.45);
+    }
+
+    .section-title {
+      color: #fff;
+      font-size: 28px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .timeline-item {
+      margin-bottom: 20px;
+      padding-left: 16px;
+      border-left: 3px solid #8b5cf6;
+    }
+
+    .highlight {
+      background: linear-gradient(90deg, rgba(255,111,181,0.25), rgba(139,92,246,0.25));
+      padding: 16px;
+      border-radius: 12px;
+      color: white;
+      margin-top: 16px;
+      box-shadow: inset 0 0 18px rgba(0,0,0,0.3);
+    }
+  </style>
 </head>
+
 <body>
-  <header class="header">
-    <div class="inner wrap">
-      <a class="brand" href="index.html"><div class="logo">N10</div><div><h1>Noevas10</h1><p>Criador de conteúdo e desenvolvedor.</p></div></a>
-      <nav class="nav">
-        <a href="index.html">Início</a>
-        <a class="active" href="sobre.html">Sobre</a>
-        <a href="projetos.html">Projetos</a>
-        <a href="contactos.html">Contactos</a>
-      </nav>
-      <div class="controls"><button id="themeToggle" class="btn btn-outline">Tema</button></div>
+
+<header>
+  <nav>
+    <a href="index.html">Início</a>
+    <a class="active" href="sobre.html">Sobre Mim</a>
+    <a href="projetos.html">Projetos</a>
+    <a href="contactos.html">Contactos</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero-sobre">
+  <h1>Sobre Mim</h1>
+  <p>O meu nome é Noevas10 — e dedico-me a ajudar jovens a organizar vida, finanças e carreira.</p>
+</section>
+
+<main class="sobre-wrap">
+
+  <!-- STORY -->
+  <div class="card">
+    <h2 class="section-title">A Minha História</h2>
+    <p>Durante muito tempo senti que tinha potencial, mas faltava direção. Faltava estrutura. Faltava alguém que me mostrasse que era possível crescer de forma organizada — sem atalhos, mas com estratégia.</p>
+    <p>Com a experiência, estudo e evolução pessoal, tornei-me a pessoa que gostaria de ter tido ao meu lado: alguém que entende a realidade dos jovens, a pressão, as dúvidas… e que oferece orientação clara.</p>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="card">
+    <h2 class="section-title">Linha do Tempo</h2>
+
+    <div class="timeline-item">
+      <h3>Início</h3>
+      <p>Comecei a organizar a minha vida com pequenos sistemas: objetivos simples, rotinas e planeamento semanal.</p>
     </div>
-  </header>
 
-  <main class="wrap">
-    <div class="container">
-      <h1>Sobre Mim</h1>
-
-      <div class="card fade-up">
-        <h2>Quem sou</h2>
-        <p>Sou movido por visão, disciplina e vontade de construir algo com impacto. Trabalho diariamente para evoluir pessoal e profissionalmente.</p>
-      </div>
-
-      <div class="card fade-up">
-        <h2>Missão</h2>
-        <p>Construir uma rotina e projetos que permitam liberdade e crescimento sustentado.</p>
-      </div>
-
-      <div class="card fade-up">
-        <h2>Valores</h2>
-        <p>Disciplina • Resiliência • Honestidade • Progresso</p>
-      </div>
+    <div class="timeline-item">
+      <h3>Crescimento</h3>
+      <p>Descobri ferramentas de desenvolvimento pessoal, literacia financeira e gestão profissional que mudaram a minha vida.</p>
     </div>
-  </main>
 
-  <a class="float-whatsapp" href="https://wa.me/351931760077" target="_blank" aria-label="Falar no WhatsApp">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.148-1.758-.867-2.03-.967-.273-.099-.472-.148-.672.148-.198.297-.768.967-.942 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.447-.52.149-.173.198-.297.298-.495.099-.198.05-.372-.025-.52-.074-.148-.672-1.618-.92-2.214-.242-.579-.487-.5-.672-.51l-.573-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487 3.056 1.335 3.056.89 3.607.834.552-.056 1.758-.72 2.006-1.415.248-.694.248-1.289.173-1.415-.074-.127-.273-.198-.57-.347z" fill="#fff"/></svg>
-  </a>
+    <div class="timeline-item">
+      <h3>Atualidade</h3>
+      <p>Hoje ajudo jovens a aplicarem estes mesmos métodos — com clareza, estrutura e resultados reais.</p>
+    </div>
+  </div>
 
-  <footer>
-    © <span id="year2"></span> Noevas10
-  </footer>
+  <!-- MISSÃO / VISÃO / VALORES -->
+  <div class="card">
+    <h2 class="section-title">Missão, Visão e Valores</h2>
+    
+    <div class="highlight">
+      <h3>Missão</h3>
+      <p>Ajudar jovens a criarem direção na vida, construírem estabilidade financeira e desenvolverem carreira com confiança.</p>
+    </div>
 
-  <script src="script.js"></script>
-  <script>document.getElementById('year2').textContent = new Date().getFullYear();</script>
+    <div class="highlight">
+      <h3>Visão</h3>
+      <p>Um futuro onde jovens estejam preparados para enfrentar desafios com maturidade, estratégia e mentalidade forte.</p>
+    </div>
+
+    <div class="highlight">
+      <h3>Valores</h3>
+      <p>Disciplina. Verdade. Confiança. Evolução. Liderança pessoal.</p>
+    </div>
+  </div>
+
+  <!-- COMPETÊNCIAS -->
+  <div class="card">
+    <h2 class="section-title">Competências</h2>
+    <ul style="line-height:1.7; color:rgba(240,240,255,0.9)">
+      <li>Organização de Vida e Rotina</li>
+      <li>Planeamento Financeiro Básico</li>
+      <li>Desenvolvimento Pessoal</li>
+      <li>Estratégia Profissional e Carreiras</li>
+      <li>Tomada de Decisão</li>
+      <li>Orientação Motivacional</li>
+    </ul>
+  </div>
+
+</main>
+
+<footer style="text-align:center;padding:26px;color:rgba(255,255,255,0.6)">
+  © <span id="year"></span> Noevas10
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>

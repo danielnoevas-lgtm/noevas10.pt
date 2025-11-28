@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Criar Conta</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="form-container">
+    <h2>Criar Conta</h2>
+
+    <input id="nome" type="text" placeholder="Nome completo">
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Palavra-passe">
+
+    <button onclick="createAccount()">Registar</button>
+
+    <p>Já tens conta? <a href="login.html">Entrar</a></p>
+  </div>
+
+  <script src="auth-client.js"></script>
+
+  <script>
+    function createAccount() {
+      register(
+        document.getElementById("nome").value,
+        document.getElementById("email").value,
+        document.getElementById("password").value
+      );
+    }
+  </script>
+
+</body>
+</html>

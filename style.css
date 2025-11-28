@@ -1,0 +1,106 @@
+/* ------------ TEMA PROFISSIONAL NOEVAS10 ----------- */
+
+:root {
+    --bg: #0d0f14;
+    --card: rgba(255,255,255,0.05);
+    --glass: rgba(255,255,255,0.07);
+    --border: rgba(255,255,255,0.12);
+    --text: #f2f2f2;
+    --muted: #8f8f8f;
+    --accent: #ff7a00;
+    --radius: 16px;
+    --shadow: 0 10px 30px rgba(0,0,0,0.45);
+    --max-width: 1100px;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle at 10% 20%, rgba(255,122,0,0.12), transparent 60%),
+                radial-gradient(circle at 90% 80%, rgba(0,150,255,0.12), transparent 60%),
+                var(--bg);
+    color: var(--text);
+}
+
+/* NAVBAR */
+header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(12px);
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    z-index: 50;
+}
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+}
+nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 17px;
+    transition: 0.25s;
+}
+nav a:hover {
+    color: var(--accent);
+}
+nav .active {
+    color: var(--accent);
+}
+
+/* PAGE STRUCTURE */
+.container {
+    max-width: var(--max-width);
+    margin: 120px auto 50px;
+    padding: 20px;
+}
+
+/* TITLES */
+h1 {
+    font-size: 42px;
+}
+h2 {
+    color: var(--accent);
+    font-size: 28px;
+}
+
+/* CARDS */
+.card {
+    background: var(--card);
+    padding: 25px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    margin-bottom: 25px;
+    transition: 0.3s;
+}
+.card:hover {
+    transform: translateY(-4px);
+}
+
+/* BUTTONS */
+.btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    margin-top: 12px;
+    transition: 0.3s;
+}
+.btn:hover {
+    background: #ff8f2f;
+}
+
+/* FOOTER */
+footer {
+    margin-top: 40px;
+    text-align: center;
+    padding: 25px;
+    color: var(--muted);
+}

@@ -1,39 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <title>Login – Noevas10</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Login - Noevas10</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<nav class="glass-nav">
-    <div class="logo">Noevas10</div>
-    <ul>
+  <nav class="glass-nav">
+    <div class="nav-container">
+      <div class="logo">Noevas10</div>
+      <ul class="nav-links">
         <li><a href="index.html">Início</a></li>
         <li><a href="sobre.html">Sobre Mim</a></li>
         <li><a href="projetos.html">Projetos</a></li>
         <li><a href="contactos.html">Contactos</a></li>
-        <li><a class="active" href="login.html">Login</a></li>
-    </ul>
-</nav>
+      </ul>
+      <div class="nav-cta"><a href="login.html" class="active">Entrar</a></div>
+    </div>
+  </nav>
 
-<div class="form-container">
-    <h2>Iniciar Sessão</h2>
+  <div class="form-container" style="margin-top:130px">
+    <h2>Iniciar Sessão (teste)</h2>
+    <input id="loginUser" class="input-field" placeholder="Nome de utilizador (teste)">
+    <input id="loginPass" class="input-field" type="password" placeholder="Password (teste)">
+    <button class="btn-primary" onclick="fazerLogin()">Entrar</button>
 
-    <input id="login-email" class="input-field" type="email" placeholder="Email">
-    <input id="login-password" class="input-field" type="password" placeholder="Palavra-passe">
-
-    <button onclick="login()" class="btn-primary">Entrar</button>
-
-    <p class="form-link">
-        Ainda não tem conta? <a href="signup.html">Criar Conta</a>
-    </p>
-
+    <p class="form-link">Ainda não tens conta? <a href="signup.html">Criar Conta</a></p>
     <p id="login-msg" class="msg"></p>
-</div>
+  </div>
 
-<script src="auth-client.js"></script>
+<script>
+function fazerLogin(){
+  const user = document.getElementById('loginUser').value;
+  const pass = document.getElementById('loginPass').value;
+  const regUser = localStorage.getItem('site_user');
+  const regPass = localStorage.getItem('site_pass');
+
+  if(!regUser){
+    document.getElementById('login-msg').innerText = 'Nenhuma conta encontrada. Cria uma conta primeiro.';
+    return;
+  }
+  if(user === regUser && pass === regPass){
+    // grava sessão simples
+    localStorage.setItem('site_session', regUser);
+    window.location.href = 'dashboard.html';
+  } else {
+    document.getElementById('login-msg').innerText = 'Credenciais incorretas.';
+  }
+}
+</script>
 
 </body>
 </html>

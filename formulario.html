@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário - Noevas10</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="projetos.html">Projetos</a>
+        <a href="contactos.html">Contactos</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Formulário de Contacto</h1>
+    <p>Preenche os dados e a mensagem será enviada para o meu WhatsApp.</p>
+</section>
+
+<section class="contact-form">
+    <form id="whatsappForm">
+
+        <label>Nome</label>
+        <input type="text" id="nome" placeholder="Escreve o teu nome..." required>
+
+        <label>Idade</label>
+        <input type="number" id="idade" min="10" max="100" placeholder="A tua idade..." required>
+
+        <label>Localidade</label>
+        <select id="localidade" required>
+            <option value="">Seleciona a tua cidade...</option>
+            <option>Lisboa</option>
+            <option>Porto</option>
+            <option>Coimbra</option>
+            <option>Braga</option>
+            <option>Faro</option>
+            <option>Aveiro</option>
+            <option>Setúbal</option>
+            <option>Évora</option>
+            <option>Viseu</option>
+            <option>Guimarães</option>
+            <option>Viana do Castelo</option>
+            <option>Leiria</option>
+            <option>Funchal</option>
+            <option>Ponta Delgada</option>
+        </select>
+
+        <label>Profissão</label>
+        <input type="text" id="profissao" placeholder="A tua profissão..." required>
+
+        <label>Objetivos de vida</label>
+        <textarea id="objetivos" placeholder="Fala-me sobre os teus objetivos..." required></textarea>
+
+        <label>Que tipo de apoio procuras?</label>
+        <select id="apoio" required>
+            <option value="">Seleciona uma opção...</option>
+            <option>Pessoal</option>
+            <option>Financeiro</option>
+            <option>Profissional</option>
+        </select>
+
+        <button type="submit">Enviar para WhatsApp</button>
+    </form>
+</section>
+
+<script>
+document.getElementById("whatsappForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const nome = document.getElementById("nome").value;
+    const idade = document.getElementById("idade").value;
+    const localidade = document.getElementById("localidade").value;
+    const profissao = document.getElementById("profissao").value;
+    const objetivos = document.getElementById("objetivos").value;
+    const apoio = document.getElementById("apoio").value;
+
+    const phone = "351931760077";
+
+    const texto =
+        "📩 *Nova Mensagem do Formulário Noevas10*%0A%0A" +
+        "👤 *Nome:* " + nome + "%0A" +
+        "🎂 *Idade:* " + idade + "%0A" +
+        "📍 *Localidade:* " + localidade + "%0A" +
+        "💼 *Profissão:* " + profissao + "%0A%0A" +
+        "🎯 *Objetivos:* %0A" + objetivos + "%0A%0A" +
+        "🧭 *Apoio procurado:* " + apoio;
+
+    const url = `https://wa.me/${phone}?text=${texto}`;
+
+    window.open(url, "_blank");
+});
+</script>
+
+</body>
+</html>

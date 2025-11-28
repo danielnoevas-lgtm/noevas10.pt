@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Formulário - Noevas10</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="glass-nav">
+    <div class="nav-container">
+      <div class="logo">Noevas10</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="sobre.html">Sobre Mim</a></li>
+        <li><a href="projetos.html">Projetos</a></li>
+        <li><a href="contactos.html">Contactos</a></li>
+      </ul>
+      <div class="nav-cta"><a href="login.html">Entrar</a></div>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top:120px">
+    <section>
+      <h1>Formulário</h1>
+      <p>Abre este formulário para recolher informações</p>
+
+      <div class="form-container">
+        <label>Nome</label>
+        <input class="input-field" type="text" id="f_nome">
+        <label>Idade</label>
+        <input class="input-field" type="number" id="f_idade">
+        <label>Localidade</label>
+        <select class="input-field" id="f_localidade">
+          <option>Lisboa</option>
+          <option>Porto</option>
+          <option>Coimbra</option>
+          <option>Braga</option>
+          <option>Faro</option>
+        </select>
+        <label>Profissão</label>
+        <input class="input-field" type="text" id="f_profissao">
+        <label>Objetivos de Vida</label>
+        <textarea class="input-field" id="f_objetivos"></textarea>
+        <label>Tipo de apoio</label>
+        <select class="input-field" id="f_apoio">
+          <option>Pessoal</option>
+          <option>Financeiro</option>
+          <option>Profissional</option>
+        </select>
+
+        <button class="btn-primary" onclick="enviarForm()">Enviar</button>
+        <p id="form-msg" class="msg"></p>
+      </div>
+
+    </section>
+  </main>
+
+<script>
+function enviarForm(){
+  document.getElementById('form-msg').innerText = 'Obrigado — formulário (teste) enviado!';
+  setTimeout(()=>document.getElementById('form-msg').innerText = '',3000);
+}
+</script>
+
+</body>
+</html>

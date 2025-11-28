@@ -1,20 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <title>Área Pessoal – Noevas10</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dashboard - Noevas10</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="dashboard">
-    <h2>Bem-vindo à sua área pessoal 👋</h2>
-    <p id="user-info"></p>
+  <nav class="glass-nav">
+    <div class="nav-container">
+      <div class="logo">Noevas10</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="sobre.html">Sobre Mim</a></li>
+        <li><a href="projetos.html">Projetos</a></li>
+        <li><a href="contactos.html">Contactos</a></li>
+      </ul>
+      <div class="nav-cta"><a href="login.html">Entrar</a></div>
+    </div>
+  </nav>
 
-    <button onclick="logout()" class="btn-primary">Terminar Sessão</button>
-</div>
+  <main class="dashboard" style="padding-top:120px">
+    <h2>Bem-vindo à tua Área Pessoal</h2>
+    <p id="welcome">A carregar dados...</p>
+    <p><button class="btn-primary" onclick="sair()">Terminar Sessão</button></p>
+  </main>
 
-<script src="auth-client.js"></script>
+<script>
+(function(){
+  const session = localStorage.getItem('site_session');
+  if(!session){ window.location.href='login.html'; return; }
+  document.getElementById('welcome').innerText = 'Olá, ' + session + '! Está é a tua dashboard (teste).';
+})();
+function sair(){
+  localStorage.removeItem('site_session');
+  window.location.href='index.html';
+}
+</script>
 
 </body>
 </html>

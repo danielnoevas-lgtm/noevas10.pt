@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contactos - Noevas10</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Pequeno complemento local para garantir que fica bonito mesmo sem CSS externo carregado */
+    .contact-hero{
+      text-align:center;
+      padding:60px 20px;
+      background: linear-gradient(135deg,#6a11cb,#2575fc);
+      color:#fff;
+      border-radius:0 0 14px 14px;
+    }
+    .contact-opts{max-width:1100px;margin:30px auto;display:flex;gap:20px;flex-wrap:wrap;justify-content:center;padding:0 10px}
+    .opt{background:rgba(255,255,255,0.04);padding:22px;border-radius:12px;width:300px;text-align:center;border:1px solid rgba(255,255,255,0.06)}
+    .opt h3{margin-bottom:10px}
+    .opt p{color:rgba(255,255,255,0.85);margin-bottom:16px}
+    .btn-contact{display:inline-block;padding:10px 16px;border-radius:10px;background:linear-gradient(90deg,#ff7aef,#7ab2ff);color:#02121a;text-decoration:none;font-weight:700}
+  </style>
+</head>
+<body>
+
+<header>
+  <nav style="display:flex;gap:18px;justify-content:center;padding:16px 0;background:transparent">
+    <a href="index.html">Início</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="projetos.html">Projetos</a>
+    <a href="contactos.html" style="font-weight:700">Contactos</a>
+  </nav>
+</header>
+
+<section class="contact-hero">
+  <h1>Contacta-me</h1>
+  <p>Escolhe a forma mais prática para falar comigo.</p>
+</section>
+
+<section class="contact-opts">
+  <div class="opt">
+    <h3>Formulário</h3>
+    <p>Preenche o formulário completo com os teus dados e envio directo para o WhatsApp.</p>
+    <a class="btn-contact" href="formulario.html">Abrir Formulário</a>
+  </div>
+
+  <div class="opt">
+    <h3>WhatsApp</h3>
+    <p>Abre conversa directa comigo agora.</p>
+    <a class="btn-contact" href="https://wa.me/351931760077" target="_blank" rel="noopener">Abrir WhatsApp</a>
+  </div>
+
+  <div class="opt">
+    <h3>Email</h3>
+    <p>Envia um email detalhado para o meu contacto.</p>
+    <a class="btn-contact" href="mailto:novaissdaniel@gmail.com">Enviar Email</a>
+  </div>
+</section>
+
+<footer style="text-align:center;padding:22px;color:#ccc">© <span id="year">2025</span> Noevas10</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

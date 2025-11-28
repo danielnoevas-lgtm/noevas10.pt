@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0d0d0d;
+    color: white;
+    text-align: center;
+}
+
+header {
+    padding: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+    font-size: 18px;
+}
+
+nav a.active {
+    border-bottom: 2px solid #fff;
+}
+
+.hero {
+    padding: 40px 20px;
+}
+
+.btn {
+    background: white;
+    color: black;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 18px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.content {
+    padding: 20px 30px;
+    text-align: left;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+h1, h2 {
+    color: white;
+}

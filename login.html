@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8" />
-  <title>Login</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <title>Login – Noevas10</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <div class="form-container">
-    <h2>Entrar</h2>
 
-    <input id="email" type="email" placeholder="Email">
-    <input id="password" type="password" placeholder="Palavra-passe">
+<nav class="glass-nav">
+    <div class="logo">Noevas10</div>
+    <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="sobre.html">Sobre Mim</a></li>
+        <li><a href="projetos.html">Projetos</a></li>
+        <li><a href="contactos.html">Contactos</a></li>
+        <li><a class="active" href="login.html">Login</a></li>
+    </ul>
+</nav>
 
-    <button onclick="doLogin()">Entrar</button>
+<div class="form-container">
+    <h2>Iniciar Sessão</h2>
 
-    <p>Não tens conta? <a href="signup.html">Criar conta</a></p>
-  </div>
+    <input id="login-email" class="input-field" type="email" placeholder="Email">
+    <input id="login-password" class="input-field" type="password" placeholder="Palavra-passe">
 
-  <script src="auth-client.js"></script>
+    <button onclick="login()" class="btn-primary">Entrar</button>
 
-  <script>
-    function doLogin() {
-      login(
-        document.getElementById("email").value,
-        document.getElementById("password").value
-      );
-    }
-  </script>
+    <p class="form-link">
+        Ainda não tem conta? <a href="signup.html">Criar Conta</a>
+    </p>
+
+    <p id="login-msg" class="msg"></p>
+</div>
+
+<script src="auth-client.js"></script>
+
 </body>
 </html>

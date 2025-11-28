@@ -1,40 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <title>Criar Conta – Noevas10</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Criar Conta - Noevas10</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<nav class="glass-nav">
-    <div class="logo">Noevas10</div>
-    <ul>
+  <nav class="glass-nav">
+    <div class="nav-container">
+      <div class="logo">Noevas10</div>
+      <ul class="nav-links">
         <li><a href="index.html">Início</a></li>
         <li><a href="sobre.html">Sobre Mim</a></li>
         <li><a href="projetos.html">Projetos</a></li>
         <li><a href="contactos.html">Contactos</a></li>
-        <li><a href="login.html">Login</a></li>
-    </ul>
-</nav>
+      </ul>
+      <div class="nav-cta"><a href="login.html">Entrar</a></div>
+    </div>
+  </nav>
 
-<div class="form-container">
-    <h2>Criar Conta</h2>
+  <div class="form-container" style="margin-top:130px">
+    <h2>Criar Conta (teste)</h2>
+    <input id="suUser" class="input-field" placeholder="Nome de utilizador">
+    <input id="suPass" class="input-field" type="password" placeholder="Password">
+    <button class="btn-primary" onclick="criarConta()">Criar Conta</button>
 
-    <input id="signup-name" class="input-field" type="text" placeholder="Nome completo">
-    <input id="signup-email" class="input-field" type="email" placeholder="Email">
-    <input id="signup-password" class="input-field" type="password" placeholder="Palavra-passe">
-
-    <button onclick="signup()" class="btn-primary">Criar Conta</button>
-
-    <p class="form-link">
-        Já tem conta? <a href="login.html">Iniciar sessão</a>
-    </p>
-
+    <p class="form-link">Já tens conta? <a href="login.html">Entrar</a></p>
     <p id="signup-msg" class="msg"></p>
-</div>
+  </div>
 
-<script src="auth-client.js"></script>
+<script>
+function criarConta(){
+  const user = document.getElementById('suUser').value;
+  const pass = document.getElementById('suPass').value;
+  if(!user || !pass){ document.getElementById('signup-msg').innerText='Preenche ambos os campos.'; return; }
+  localStorage.setItem('site_user', user);
+  localStorage.setItem('site_pass', pass);
+  localStorage.setItem('site_session', user);
+  document.getElementById('signup-msg').innerText = 'Conta criada com sucesso! A redirecionar...';
+  setTimeout(()=> window.location.href='dashboard.html',900);
+}
+</script>
 
 </body>
 </html>

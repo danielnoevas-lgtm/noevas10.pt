@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <title>Criar Conta</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Criar Conta – Noevas10</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <div class="form-container">
+
+<nav class="glass-nav">
+    <div class="logo">Noevas10</div>
+    <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="sobre.html">Sobre Mim</a></li>
+        <li><a href="projetos.html">Projetos</a></li>
+        <li><a href="contactos.html">Contactos</a></li>
+        <li><a href="login.html">Login</a></li>
+    </ul>
+</nav>
+
+<div class="form-container">
     <h2>Criar Conta</h2>
 
-    <input id="nome" type="text" placeholder="Nome completo">
-    <input id="email" type="email" placeholder="Email">
-    <input id="password" type="password" placeholder="Palavra-passe">
+    <input id="signup-name" class="input-field" type="text" placeholder="Nome completo">
+    <input id="signup-email" class="input-field" type="email" placeholder="Email">
+    <input id="signup-password" class="input-field" type="password" placeholder="Palavra-passe">
 
-    <button onclick="createAccount()">Registar</button>
+    <button onclick="signup()" class="btn-primary">Criar Conta</button>
 
-    <p>Já tens conta? <a href="login.html">Entrar</a></p>
-  </div>
+    <p class="form-link">
+        Já tem conta? <a href="login.html">Iniciar sessão</a>
+    </p>
 
-  <script src="auth-client.js"></script>
+    <p id="signup-msg" class="msg"></p>
+</div>
 
-  <script>
-    function createAccount() {
-      register(
-        document.getElementById("nome").value,
-        document.getElementById("email").value,
-        document.getElementById("password").value
-      );
-    }
-  </script>
+<script src="auth-client.js"></script>
 
 </body>
 </html>

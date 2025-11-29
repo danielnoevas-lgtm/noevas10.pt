@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .profile-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #ffffffbb;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            border-radius: 8px;
+            border: 1px solid #bbb;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #6c47ff;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .display-box {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f3f0ff;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR (versão simples com login + perfil) -->
+<nav class="navbar">
+    <div class="logo">NOEVAS10</div>
+    <ul class="nav-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="sobre.html">Sobre Mim</a></li>
+        <li><a href="projetos.html">Projetos</a></li>
+        <li><a href="contactos.html">Contactos</a></li>
+        <li id="loginLink"><a href="login.html">Login</a></li>
+        <li id="profileLink" style="display:none;"><a href="profile.html">Perfil</a></li>
+    </ul>
+</nav>
+
+<div class="profile-container">
+    <h2>O Meu Perfil</h2>
+
+    <form id="profileForm">
+        <label>Nome:</label>
+        <input type="text" id="nome">
+
+        <label>Email:</label>
+        <input type="email" id="email">
+
+        <label>Telefone:</label>
+        <input type="text" id="telefone">
+
+        <label>Idade:</label>
+        <input type="number" id="idade">
+
+        <label>Profissão:</label>
+        <input type="text" id="profissao">
+
+        <label>Localidade:</label>
+        <select id="localidade">
+            <option value="">Selecione...</option>
+            <option>Lisboa</option>
+            <option>Porto</option>
+            <option>Braga</option>
+            <option>Coimbra</option>
+            <option>Faro</option>
+            <option>Aveiro</option>
+            <option>Viseu</option>
+            <option>Évora</option>
+            <option>Leiria</option>
+            <option>Setúbal</option>
+        </select>
+
+        <label>Frase motivadora:</label>
+        <textarea id="frase" rows="3"></textarea>
+
+        <button type="submit">Guardar Perfil</button>
+    </form>
+
+    <div id="displayArea" class="display-box" style="display:none;">
+        <h3>Informações Guardadas</h3>
+        <p><strong>Nome:</strong> <span id="d_nome"></span></p>
+        <p><strong>Email:</strong> <span id="d_email"></span></p>
+        <p><strong>Telefone:</strong> <span id="d_telefone"></span></p>
+        <p><strong>Idade:</strong> <span id="d_idade"></span></p>
+        <p><strong>Profissão:</strong> <span id="d_profissao"></span></p>
+        <p><strong>Localidade:</strong> <span id="d_localidade"></span></p>
+        <p><strong>Frase:</strong> <span id="d_frase"></span></p>
+    </div>
+</div>
+
+<script>
+    // Mostrar perfil se estiver com login ativo
+    const loggedUser = localStorage.getItem("loggedUser");
+    if (loggedUser) {
+        document.getElementById("loginLink").style.display = "none";
+        document.getElementById("profileLink").style.display = "inline-block";
+    }
+
+    // Carregar dados salvos no perfil
+    const saved = JSON.parse(localStorage.getItem("userProfile")) || {};
+
+    document.getElementById("nome").value = saved.nome || "";
+    document.getElementById("email").value = saved.email || "";
+    document.getElementById("telefone").value = saved.telefone || "";
+    document.getElementById("idade").value = saved.idade || "";
+    document.getElementById("profissao").value = saved.profissao || "";
+    document.getElementById("localidade").value = saved.localidade || "";
+    document.getElementById("frase").value = saved.frase || "";
+
+    // Mostrar caso exista
+    if (saved.nome) {
+        document.getElementById("displayArea").style.display = "block";
+        atualizarDisplay(saved);
+    }
+
+    function atualizarDisplay(data) {
+        document.getElementById("d_nome").textContent = data.nome;
+        document.getElementById("d_email").textContent = data.email;
+        document.getElementById("d_telefone").textContent = data.telefone;
+        document.getElementById("d_idade").textContent = data.idade;
+        document.getElementById("d_profissao").textContent = data.profissao;
+        document.getElementById("d_localidade").textContent = data.localidade;
+        document.getElementById("d_frase").textContent = data.frase;
+    }
+
+    // Guardar perfil
+    document.getElementById("profileForm").addEventListener("submit", function(e){
+        e.preventDefault();
+
+        const data = {
+            nome: document.get

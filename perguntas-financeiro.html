@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perguntas - Projeto Financeiro</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body { color: white; }
+        .container { max-width: 900px; margin: 120px auto; padding: 20px; }
+        h1 { font-size: 32px; }
+        label { display: block; margin-top: 15px; font-weight: bold; }
+        textarea, input { width: 100%; padding: 10px; border-radius: 6px; margin-top: 5px; }
+        .btn { display: inline-block; margin-top: 20px; padding: 12px 20px; background: #8a2be2; color: white; border-radius: 8px; text-decoration: none; font-weight: bold; }
+        .btn:hover { background: #a35cff; }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="logo">Noevas10</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="sobre.html">Sobre Mim</a></li>
+            <li><a href="projetos.html">Projetos</a></li>
+            <li><a href="contactos.html">Contactos</a></li>
+            <li><a href="profile.html">Perfil</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+    <h1>Projeto Financeiro — 20 Perguntas</h1>
+
+    <form id="formFinanceiro">
+
+        <script>
+            const perguntas = [
+                "Qual é o teu principal objetivo financeiro neste momento?",
+                "Tens alguma poupança? Quanto?",
+                "Quanto ganhas mensalmente?",
+                "Quais são as tuas despesas fixas?",
+                "Quais são as tuas despesas variáveis?",
+                "Tens dívidas? Quais?",
+                "Qual é o teu maior desafio financeiro?",
+                "Quanto queres poupar por mês?",
+                "Investes atualmente? Se sim, onde?",
+                "Queres aprender a investir?",
+                "Já fizeste algum orçamento mensal?",
+                "Controlas os teus gastos?",
+                "Qual é a tua meta financeira a curto prazo?",
+                "Qual é a tua meta financeira a médio prazo?",
+                "Qual é a tua meta financeira a longo prazo?",
+                "O que te impede de ganhar mais dinheiro?",
+                "Tens objetivos profissionais que estejam ligados ao dinheiro?",
+                "Qual é o teu estilo de vida ideal?",
+                "Quanto dinheiro gostarias de ter disponível todos os meses?",
+                "Estás disposto a mudar hábitos para melhorar a tua vida financeira?"
+            ];
+
+            document.write(perguntas.map((p, i) => `
+                <label>${i+1}. ${p}</label>
+                <textarea name="q${i+1}" required></textarea>
+            `).join(''));
+        </script>
+
+        <a class="btn" onclick="enviarWhatsApp()">Enviar para WhatsApp</a>
+        <a class="btn" onclick="gerarPDF()">Gerar PDF</a>
+        <a href="analise.html" class="btn" onclick="guardarRespostas()">Obter Análise</a>
+    </form>
+</div>
+
+<script>
+function enviarWhatsApp() {
+    let texto = "Projeto Financeiro - Respostas:%0A%0A";
+    const form = document.getElementById("formFinanceiro");
+
+    for (let i = 1; i <= 20; i++) {
+        texto += `${i}. ${form["q"+i].value}%0A`;
+    }
+
+    window.open(`https://wa.me/351931760077?text=${texto}`);
+}
+
+function guardarRespostas() {
+    const respostas = {};
+    const form = document.getElementById("formFinanceiro");
+
+    for (let i = 1; i <= 20; i++) {
+        respostas["q"+i] = form["q"+i].value;
+    }
+
+    localStorage.setItem("respostasProjeto", JSON.stringify(respostas));
+    localStorage.setItem("tipoProjeto", "Financeiro");
+}
+
+function gerarPDF() {
+    const respostas = [];
+    const form = document.getElementById("formFinanceiro");
+
+    for (let i = 1; i <= 20; i++) {
+        respostas.push(`${i}. ${form["q"+i].value}`);
+    }
+
+    const conteudo = respostas.join("\n\n");
+    const blob = new Blob([conteudo], { type: "text/plain" });
+    const link = document.createElement("a");
+
+    link.href = URL.createObjectURL(blob);
+    link.download = "Projeto-Financeiro.txt";
+    link.click();
+}
+</script>
+
+</body>
+</html>

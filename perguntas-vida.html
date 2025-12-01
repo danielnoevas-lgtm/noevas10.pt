@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perguntas - Projeto de Vida</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body { color: white; }
+        .container { max-width: 900px; margin: 120px auto; padding: 20px; }
+        h1 { font-size: 32px; }
+        label { display: block; margin-top: 15px; font-weight: bold; }
+        textarea, input { width: 100%; padding: 10px; border-radius: 6px; margin-top: 5px; }
+        .btn { display: inline-block; margin-top: 20px; padding: 12px 20px; background: #8a2be2; color: white; border-radius: 8px; text-decoration: none; font-weight: bold; }
+        .btn:hover { background: #a35cff; }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="logo">Noevas10</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="sobre.html">Sobre Mim</a></li>
+            <li><a href="projetos.html">Projetos</a></li>
+            <li><a href="contactos.html">Contactos</a></li>
+            <li><a href="profile.html">Perfil</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+    <h1>Projeto de Vida — 20 Perguntas</h1>
+
+    <form id="formVida">
+
+        <script>
+            const perguntas = [
+                "Como imaginas a tua vida ideal daqui a 10 anos?",
+                "Qual é o teu maior sonho neste momento?",
+                "O que te motiva verdadeiramente na vida?",
+                "Quais são os teus maiores bloqueios emocionais?",
+                "Que tipo de pessoa desejas tornar-te?",
+                "O que te impede de evoluir mais rápido?",
+                "Quais são as tuas prioridades na vida?",
+                "Que hábitos tens que te ajudam a crescer?",
+                "E que hábitos tens que te prejudicam?",
+                "Quais são os teus objetivos mais importantes?",
+                "Que tipo de relações queres ter na tua vida?",
+                "Como gostarias que os outros te descrevessem?",
+                "O que mudarias na tua vida atual?",
+                "Que competências queres aprender?",
+                "Que impacto queres deixar no mundo?",
+                "Como defines felicidade?",
+                "Qual é o teu maior medo para o futuro?",
+                "Se pudesses mudar apenas uma coisa agora, qual seria?",
+                "Quais são os teus valores fundamentais?",
+                "O que precisas de começar a fazer imediatamente?"
+            ];
+
+            document.write(perguntas.map((p, i) => `
+                <label>${i+1}. ${p}</label>
+                <textarea name="q${i+1}" required></textarea>
+            `).join(''));
+        </script>
+
+        <a class="btn" onclick="enviarWhatsApp()">Enviar para WhatsApp</a>
+        <a class="btn" onclick="gerarPDF()">Gerar PDF</a>
+        <a href="analise.html" class="btn" onclick="guardarRespostas()">Obter Análise</a>
+    </form>
+</div>
+
+<script>
+function enviarWhatsApp() {
+    let texto = "Projeto de Vida - Respostas:%0A%0A";
+    const form = document.getElementById("formVida");
+
+    for (let i = 1; i <= 20; i++) {
+        texto += `${i}. ${form["q"+i].value}%0A`;
+    }
+
+    window.open(`https://wa.me/351931760077?text=${texto}`);
+}
+
+function guardarRespostas() {
+    const respostas = {};
+    const form = document.getElementById("formVida");
+
+    for (let i = 1; i <= 20; i++) {
+        respostas["q"+i] = form["q"+i].value;
+    }
+
+    localStorage.setItem("respostasProjeto", JSON.stringify(respostas));
+    localStorage.setItem("tipoProjeto", "Vida");
+}
+
+function gerarPDF() {
+    const respostas = [];
+    const form = document.getElementById("formVida");
+
+    for (let i = 1; i <= 20; i++) {
+        respostas.push(`${i}. ${form["q"+i].value}`);
+    }
+
+    const conteudo = respostas.join("\n\n");
+    const blob = new Blob([conteudo], { type: "text/plain" });
+    const link = document.createElement("a");
+
+    link.href = URL.createObjectURL(blob);
+    link.download = "Projeto-de-Vida.txt";
+    link.click();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projetos - Noevas10</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="glass-nav">
+  <div class="nav-container">
+    <div class="logo">Noevas10</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Início</a></li>
+      <li><a href="sobre.html">Sobre Mim</a></li>
+      <li><a href="projetos.html" class="active">Projetos</a></li>
+      <li><a href="contactos.html">Contactos</a></li>
+
+      <li id="loginLink"><a href="login.html">Login</a></li>
+      <li id="profileLink" style="display:none;"><a href="profile.html">Perfil</a></li>
+      <li id="logoutLink" style="display:none;"><a href="#" onclick="logoutHandler(); return false;">Sair</a></li>
+    </ul>
+
+    <div class="nav-cta"><a href="login.html">Entrar</a></div>
+  </div>
+</nav>
+
+<!-- CONTEÚDO -->
+<main class="container" style="padding-top:120px;">
+  <h1>Projetos</h1>
+  <p>Escolhe um dos teus projetos ou cria um novo.</p>
+
+  <div class="projects-grid">
+
+    <!-- PROJETO FINANCEIRO -->
+    <div class="project-card">
+      <h2>Projeto Financeiro</h2>
+      <p>Constrói o teu plano financeiro completo.</p>
+      <a class="button" href="financeiro.html">Abrir</a>
+    </div>
+
+    <!-- PROJETO PESSOAL -->
+    <div class="project-card">
+      <h2>Projeto Pessoal</h2>
+      <p>Define objetivos e estrutura o teu desenvolvimento pessoal.</p>
+      <a class="button" href="pessoal.html">Abrir</a>
+    </div>
+
+    <!-- PROJETO DE VIDA -->
+    <div class="project-card">
+      <h2>Projeto de Vida</h2>
+      <p>Cria um plano de vida com propósito e direção.</p>
+      <a class="button" href="vida.html">Abrir</a>
+    </div>
+
+    <!-- ⭐ NOVO — CRIAR O MEU PROJETO -->
+    <div class="project-card highlight">
+      <h2>✨ Criar o Meu Projeto</h2>
+      <p>Escolhe entre os três tipos de projeto e começa agora.</p>
+      <a class="button" href="criar-projeto.html">Criar</a>
+    </div>
+
+  </div>
+</main>
+
+<script>
+// Mostrar links conforme login
+(function(){
+  const username = localStorage.getItem('site_session');
+  if(username){
+    document.getElementById('loginLink').style.display = "none";
+    document.getElementById('profileLink').style.display = "inline-block";
+    document.getElementById('logoutLink').style.display = "inline-block";
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -16,41 +16,24 @@
         <li><a href="sobre.html">Sobre Mim</a></li>
         <li><a href="projetos.html">Projetos</a></li>
         <li><a href="contactos.html">Contactos</a></li>
+        <li id="loginLink"><a class="active" href="login.html">Login</a></li>
+        <li id="profileLink" style="display:none;"><a href="profile.html">Perfil</a></li>
+        <li id="logoutLink" style="display:none;"><a href="#" onclick="logoutHandler();return false;">Sair</a></li>
       </ul>
-      <div class="nav-cta"><a href="login.html" class="active">Entrar</a></div>
+      <div class="nav-cta"><a href="login.html">Entrar</a></div>
     </div>
   </nav>
 
-  <div class="form-container" style="margin-top:130px">
+  <div class="form-container" style="margin-top:120px">
     <h2>Iniciar Sessão (teste)</h2>
-    <input id="loginUser" class="input-field" placeholder="Nome de utilizador (teste)">
-    <input id="loginPass" class="input-field" type="password" placeholder="Password (teste)">
-    <button class="btn-primary" onclick="fazerLogin()">Entrar</button>
+    <input id="loginUser" class="input-field" placeholder="Email ou username">
+    <input id="loginPass" class="input-field" type="password" placeholder="Password">
+    <button class="btn-primary" onclick="doLogin()">Entrar</button>
+    <p id="login-msg" class="msg"></p>
 
     <p class="form-link">Ainda não tens conta? <a href="signup.html">Criar Conta</a></p>
-    <p id="login-msg" class="msg"></p>
   </div>
 
-<script>
-function fazerLogin(){
-  const user = document.getElementById('loginUser').value;
-  const pass = document.getElementById('loginPass').value;
-  const regUser = localStorage.getItem('site_user');
-  const regPass = localStorage.getItem('site_pass');
-
-  if(!regUser){
-    document.getElementById('login-msg').innerText = 'Nenhuma conta encontrada. Cria uma conta primeiro.';
-    return;
-  }
-  if(user === regUser && pass === regPass){
-    // grava sessão simples
-    localStorage.setItem('site_session', regUser);
-    window.location.href = 'dashboard.html';
-  } else {
-    document.getElementById('login-msg').innerText = 'Credenciais incorretas.';
-  }
-}
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>

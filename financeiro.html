@@ -1,120 +1,156 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-<meta charset="UTF-8">
-<title>Projeto Financeiro</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Projeto Financeiro - Noevas10</title>
 <link rel="stylesheet" href="style.css">
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
 <style>
-textarea {
-    width: 100%;
-    min-height: 90px;
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 20px;
-}
-.button {
-    padding: 14px 22px;
-    border-radius: 10px;
-    background: #4c28ff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 15px;
-    font-size: 16px;
-}
+  textarea{width:100%;min-height:90px;border-radius:8px;padding:10px;margin-bottom:14px}
+  label{display:block;margin:10px 0 6px;font-weight:600}
+  .button{padding:12px 18px;border-radius:10px;background:#7a3cff;color:#fff;border:none;cursor:pointer;margin-top:10px;width:100%}
+  .actions{display:flex;gap:12px;flex-direction:column}
 </style>
-
 </head>
-
 <body>
 
-<header>
-<nav class="navbar">
-<ul>
-<li><a href="index.html">Início</a></li>
-<li><a href="sobre.html">Sobre Mim</a></li>
-<li><a href="projetos.html">Projetos</a></li>
-<li><a href="contactos.html">Contactos</a></li>
-<li id="loginLink"><a href="login.html">Login</a></li>
-<li id="profileLink" style="display:none;"><a href="profile.html">Perfil</a></li>
-</ul>
+<nav class="glass-nav">
+  <div class="nav-container">
+    <div class="logo">Noevas10</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Início</a></li>
+      <li><a href="sobre.html">Sobre Mim</a></li>
+      <li><a href="projetos.html">Projetos</a></li>
+      <li><a href="contactos.html">Contactos</a></li>
+      <li id="loginLink"><a href="login.html">Login</a></li>
+      <li id="profileLink" style="display:none;"><a href="profile.html">Perfil</a></li>
+      <li id="logoutLink" style="display:none;"><a href="#" onclick="logoutHandler();return false;">Sair</a></li>
+    </ul>
+    <div class="nav-cta"><a href="login.html">Entrar</a></div>
+  </div>
 </nav>
-</header>
 
-<section class="container">
-<h1>Projeto Financeiro</h1>
-<p>Responde às perguntas de forma detalhada:</p>
+<main class="container" style="padding-top:120px">
+  <h1>Projeto Financeiro</h1>
+  <p>Responde com o máximo de detalhe possível — isto permite criar um plano financeiro realista.</p>
 
-<form id="formProjeto">
+  <form id="formProjetoFinanceiro" onsubmit="return false;">
+    <div id="perguntasFinanceiro"></div>
 
-<div id="perguntas"></div>
-
-<button type="button" class="button" onclick="submeterWhatsApp()">📩 Enviar para WhatsApp</button>
-<button type="button" class="button" onclick="gerarPDF()">📄 Baixar PDF</button>
-
-</form>
-
-</section>
+    <div class="actions">
+      <button type="button" class="button" onclick="enviarWhatsApp('financeiro')">📩 Enviar para WhatsApp</button>
+      <button type="button" class="button" onclick="gerarPDF('financeiro')">📄 Baixar PDF</button>
+    </div>
+  </form>
+</main>
 
 <script>
+// perguntas (20) — profissional e detalhadas
 const perguntasFinanceiras = [
-"Qual é o teu rendimento mensal atual?",
-"Quais são as tuas principais despesas fixas?",
-"O que gostavas de mudar nos teus hábitos financeiros?",
-"Quanto dinheiro consegues poupar por mês?",
-"Tens dívidas? Se sim, quais?",
-"Quais são as tuas maiores dificuldades com dinheiro?",
-"Quais são os teus objetivos financeiros para 1 ano?",
-"... 13 PERGUNTAS EXTRA aqui ..."
+  "1) Qual é o teu rendimento mensal líquido atual (salário, freelance, outras fontes)?",
+  "2) Lista as tuas despesas fixas mensais (renda, serviços, transportes, subscrições).",
+  "3) Quais são as tuas despesas variáveis médias (alimentação, lazer, compras)?",
+  "4) Quanto consegues poupar atualmente por mês, em média?",
+  "5) Tens reservas de emergência? Se sim, quantos meses de despesas cobrem?",
+  "6) Tens dívidas (cartões, crédito, empréstimos)? Indica montantes e taxas aproximadas.",
+  "7) Qual é o teu objetivo financeiro prioritário para 12 meses (ex.: eliminar dívida, poupar X€)?",
+  "8) Qual é o teu objetivo financeiro a 3 anos (ex.: comprar carro, entrada casa, investimento)?",
+  "9) Tens investimento atual (poupança, ações, fundos, PPR)? Detalha se houver.",
+  "10) Qual é a tua tolerância ao risco (baixa / média / alta) para investimentos?",
+  "11) Quais são os teus maiores bloqueios ou medos em relação ao dinheiro?",
+  "12) Tens um orçamento mensal formal? Se sim, descreve o método que usas.",
+  "13) Como organizas e controlas pagamentos recorrentes e faturas?",
+  "14) Tens planos de reforma ou pensões complementares? Indica detalhes.",
+  "15) Estarias disponível para reduzir despesas X meses para atingir um objetivo? Quais?",
+  "16) Que hábitos financeiros gostarias de melhorar (ex.: controlo, poupança automática)?",
+  "17) Que fontes de rendimento extra considerarias (freelance, venda, formação)?",
+  "18) Tens metas de curto prazo para compras (viagem, eletrónica, curso)? Indica valores.",
+  "19) Precisas de ajuda para criar um plano de amortização de dívidas? Como preferes pagar (princ./juros)?",
+  "20) Que mais informação consideras importante sobre a tua situação financeira?"
 ];
 
-let pHTML = "";
-perguntasFinanceiras.forEach((p,i)=>{
-    pHTML += `<label><strong>${i+1}. ${p}</strong></label><textarea id="p${i}"></textarea>`;
+// render perguntas
+const containerF = document.getElementById('perguntasFinanceiro');
+let htmlF = '';
+perguntasFinanceiras.forEach((q, idx)=>{
+  htmlF += `<label>${q}</label><textarea id="fin_p${idx}" placeholder="Escreve aqui a tua resposta..."></textarea>`;
 });
-document.getElementById("perguntas").innerHTML = pHTML;
+containerF.innerHTML = htmlF;
 
-function submeterWhatsApp(){
-let texto = "Projeto Financeiro - Respostas:\n";
-perguntasFinanceiras.forEach((p,i)=>{
-    texto += `\n${i+1}. ${p}\nResposta: ${document.getElementById("p"+i).value}\n`;
-});
-const tel = "351931760077";
-const url = `https://wa.me/${tel}?text=${encodeURIComponent(texto)}`;
-window.open(url, "_blank");
+// utilitário: obter info de utilizador se logado
+function obterInfoUtilizador(){
+  const username = localStorage.getItem('site_session') || '';
+  let profile = null;
+  if(username){
+    try { profile = JSON.parse(localStorage.getItem('profile_' + username)); }
+    catch(e){ profile = null; }
+  }
+  return { username, profile };
 }
 
-async function gerarPDF(){
-const { jsPDF } = window.jspdf;
-const pdf = new jsPDF();
-
-pdf.setFontSize(18);
-pdf.text("Projeto Financeiro", 10, 15);
-pdf.setFontSize(12);
-
-let y = 30;
-perguntasFinanceiras.forEach((p,i)=>{
-pdf.text(`${i+1}. ${p}`, 10, y);
-y += 7;
-pdf.text("Resposta: " + document.getElementById("p"+i).value, 10, y);
-y += 12;
-if(y > 270){ pdf.addPage(); y = 20; }
-});
-
-pdf.save("Projeto_Financeiro.pdf");
+// enviar para WhatsApp
+function enviarWhatsApp(tipo){
+  const info = obterInfoUtilizador();
+  const nome = (info.profile && info.profile.nome) ? info.profile.nome : (info.username || 'Utilizador Anónimo');
+  let texto = `Noevas10 — Projeto Financeiro\nUsuário: ${nome}\nData: ${new Date().toLocaleString()}\n\n`;
+  perguntasFinanceiras.forEach((q, i)=>{
+    const r = document.getElementById('fin_p'+i).value || '[sem resposta]';
+    texto += `${i+1}. ${q}\nResposta: ${r}\n\n`;
+  });
+  const tel = "351931760077";
+  const url = `https://wa.me/${tel}?text=${encodeURIComponent(texto)}`;
+  window.open(url, '_blank');
 }
-</script>
 
-<script>
-const loggedUser = localStorage.getItem("loggedUser");
-if (loggedUser) {
-document.getElementById("loginLink").style.display = "none";
-document.getElementById("profileLink").style.display = "inline-block";
+// gerar PDF com jsPDF
+async function gerarPDF(tipo){
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF({unit: 'pt', format: 'a4'});
+  const info = obterInfoUtilizador();
+  const nome = (info.profile && info.profile.nome) ? info.profile.nome : (info.username || 'Utilizador Anónimo');
+
+  pdf.setFontSize(16);
+  pdf.text("Projeto Financeiro — Noevas10", 40, 50);
+  pdf.setFontSize(11);
+  pdf.text(`Usuário: ${nome}`, 40, 70);
+  pdf.text(`Data: ${new Date().toLocaleString()}`, 40, 86);
+
+  let y = 110;
+  pdf.setFontSize(10);
+  perguntasFinanceiras.forEach((q, i)=>{
+    const qText = `${i+1}. ${q}`;
+    const rText = document.getElementById('fin_p'+i).value || '[sem resposta]';
+
+    const splitQ = pdf.splitTextToSize(qText, 500);
+    pdf.text(splitQ, 40, y);
+    y += splitQ.length * 12;
+
+    const splitR = pdf.splitTextToSize("Resposta: " + rText, 500);
+    pdf.text(splitR, 55, y);
+    y += splitR.length * 12 + 8;
+
+    if(y > 750){
+      pdf.addPage();
+      y = 40;
+    }
+  });
+
+  pdf.save('Projeto_Financeiro_Noevas10.pdf');
 }
+
+// mostrar/esconder links na navbar consoante sessão
+(function(){
+  const username = localStorage.getItem('site_session');
+  if(username){
+    const loginLink = document.getElementById('loginLink');
+    const profileLink = document.getElementById('profileLink');
+    const logoutLink = document.getElementById('logoutLink');
+    if(loginLink) loginLink.style.display = 'none';
+    if(profileLink) profileLink.style.display = 'inline-block';
+    if(logoutLink) logoutLink.style.display = 'inline-block';
+  }
+})();
 </script>
 
 </body>

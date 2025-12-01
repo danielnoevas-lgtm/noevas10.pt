@@ -1,91 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Perfil - Noevas10</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <nav class="glass-nav">
-    <div class="nav-container">
-      <div class="logo">Noevas10</div>
-      <ul class="nav-links">
-        <li><a href="index.html">Início</a></li>
-        <li><a href="sobre.html">Sobre Mim</a></li>
-        <li><a href="projetos.html">Projetos</a></li>
-        <li><a href="contactos.html">Contactos</a></li>
-        <li id="loginLink"><a href="login.html">Login</a></li>
-        <li id="profileLink" style="display:none;"><a class="active" href="profile.html">Perfil</a></li>
-        <li id="logoutLink" style="display:none;"><a href="#" onclick="logoutHandler();return false;">Sair</a></li>
-      </ul>
-      <div class="nav-cta"><a href="login.html">Entrar</a></div>
+<header>
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="sobre.html">Sobre Mim</a></li>
+            <li><a href="projetos.html" class="active">Projetos</a></li>
+            <li><a href="contactos.html">Contactos</a></li>
+
+            <li id="loginLink"><a href="login.html">Login</a></li>
+            <li id="profileLink" style="display:none;"><a href="profile.html">Perfil</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="container">
+    <h1>Projetos</h1>
+
+    <div class="cards">
+        <a href="projetos-menu.html" class="card">
+            <h3>➕ Criar o Meu Projeto</h3>
+            <p>Desenvolve o teu próprio plano personalizado.</p>
+        </a>
     </div>
-  </nav>
 
-  <main class="profile-wrap" style="padding-top:120px">
-    <div class="profile-card">
-      <h2>O Meu Perfil</h2>
-
-      <form id="profileForm">
-        <label>Nome</label>
-        <input id="nome" class="input-field" type="text">
-
-        <label>Email</label>
-        <input id="email" class="input-field" type="email">
-
-        <label>Telefone</label>
-        <input id="telefone" class="input-field" type="text">
-
-        <label>Idade</label>
-        <input id="idade" class="input-field" type="number">
-
-        <label>Profissão</label>
-        <input id="profissao" class="input-field" type="text">
-
-        <label>Localidade</label>
-        <select id="localidade" class="input-field">
-          <option value="">Seleciona...</option>
-          <option>Lisboa</option>
-          <option>Porto</option>
-          <option>Braga</option>
-          <option>Coimbra</option>
-          <option>Faro</option>
-          <option>Aveiro</option>
-          <option>Viseu</option>
-          <option>Évora</option>
-          <option>Leiria</option>
-          <option>Setúbal</option>
-        </select>
-
-        <label>Frase motivadora</label>
-        <textarea id="frase" class="input-field" rows="3"></textarea>
-
-        <button class="btn-primary" onclick="saveProfileFromForm(event)">Guardar Perfil</button>
-        <p id="profile-msg" class="msg"></p>
-      </form>
-
-      <div id="displayArea" class="display-box" style="display:none;margin-top:18px">
-        <h3>Informações Guardadas</h3>
-        <p><strong>Nome:</strong> <span id="d_nome"></span></p>
-        <p><strong>Email:</strong> <span id="d_email"></span></p>
-        <p><strong>Telefone:</strong> <span id="d_telefone"></span></p>
-        <p><strong>Idade:</strong> <span id="d_idade"></span></p>
-        <p><strong>Profissão:</strong> <span id="d_profissao"></span></p>
-        <p><strong>Localidade:</strong> <span id="d_localidade"></span></p>
-        <p><strong>Frase:</strong> <span id="d_frase"></span></p>
-      </div>
-    </div>
-  </main>
+</section>
 
 <script>
-  // initialize profile page behaviour
-  document.addEventListener('DOMContentLoaded', function(){
-    initProfilePage();
-  });
+const loggedUser = localStorage.getItem("loggedUser");
+if (loggedUser) {
+    document.getElementById("loginLink").style.display = "none";
+    document.getElementById("profileLink").style.display = "inline-block";
+}
 </script>
 
-<script src="script.js"></script>
 </body>
 </html>

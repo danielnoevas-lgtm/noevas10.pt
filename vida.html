@@ -1,18 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
 <title>Projeto de Vida</title>
 <link rel="stylesheet" href="style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <style>
-  textarea{width:100%;min-height:90px;border-radius:8px;padding:10px;margin-bottom:14px}
-  label{display:block;margin:10px 0 6px;font-weight:600}
-  .button{padding:12px 18px;border-radius:10px;background:#7a3cff;color:#fff;border:none;cursor:pointer;margin-top:10px;width:100%}
-  .actions{display:flex;gap:12px;flex-direction:column}
+textarea {
+    width: 100%;
+    min-height: 90px;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.button {
+    padding: 14px 22px;
+    border-radius: 10px;
+    background: #8b00ff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 15px;
+    font-size: 16px;
+}
 </style>
+
 </head>
+
 <body>
 
 <nav class="glass-nav">
@@ -21,129 +37,105 @@
     <ul class="nav-links">
       <li><a href="index.html">Início</a></li>
       <li><a href="sobre.html">Sobre Mim</a></li>
-      <li><a href="projetos.html">Projetos</a></li>
+      <li><a href="projetos.html" class="active">Projetos</a></li>
       <li><a href="contactos.html">Contactos</a></li>
+
       <li id="loginLink"><a href="login.html">Login</a></li>
       <li id="profileLink" style="display:none;"><a href="profile.html">Perfil</a></li>
-      <li id="logoutLink" style="display:none;"><a href="#" onclick="logoutHandler();return false;">Sair</a></li>
+      <li id="logoutLink" style="display:none;"><a href="#" onclick="logoutHandler()">Sair</a></li>
     </ul>
-    <div class="nav-cta"><a href="login.html">Entrar</a></div>
   </div>
 </nav>
 
-<main class="container" style="padding-top:120px">
-  <h1>Projeto de Vida</h1>
-  <p>Responde com honestidade. Estas perguntas ajudam a estruturar um plano de vida com propósito.</p>
+<section class="container" style="padding-top:120px;">
+<h1>Projeto de Vida</h1>
 
-  <form id="formProjetoVida" onsubmit="return false;">
-    <div id="perguntasVida"></div>
+<form id="formProjeto">
+<div id="perguntas"></div>
 
-    <div class="actions">
-      <button type="button" class="button" onclick="enviarWhatsApp('vida')">📩 Enviar para WhatsApp</button>
-      <button type="button" class="button" onclick="gerarPDF('vida')">📄 Baixar PDF</button>
-    </div>
-  </form>
-</main>
+<button type="button" class="button" onclick="submeterWhatsApp()">📩 Enviar para WhatsApp</button>
+<button type="button" class="button" onclick="gerarPDF()">📄 Baixar PDF</button>
+
+</form>
+</section>
 
 <script>
-const perguntasVida = [
-  "1) Quais são os teus três objetivos de vida mais importantes?",
-  "2) Qual é a tua visão ideal de vida daqui a 5 anos?",
-  "3) O que te dá sentido e propósito atualmente?",
-  "4) Quais hábitos diários contribuem para essa visão?",
-  "5) Que competências precisas desenvolver para chegar lá?",
-  "6) Que sacrifícios estás disposto a fazer para atingir esses objetivos?",
-  "7) Tens um plano de ação com prazos? Descreve-o.",
-  "8) Que pessoas te apoiam e como podem ajudar?",
-  "9) Que obstáculos prevês no caminho e como os gerirás?",
-  "10) Como medirás o progresso dos teus objetivos de vida?",
-  "11) Quais são as tuas prioridades (família, carreira, saúde, etc.) e porquê?",
-  "12) Como equilibras curto prazo (sobrevivência) com longo prazo (propósito)?",
-  "13) Que decisões financeiras já tens planeadas para apoiar a visão de vida?",
-  "14) Que tipo de rotina diária te aproxima mais dos teus objetivos?",
-  "15) Que formação e conhecimento precisas adquirir e em quanto tempo?",
-  "16) Que projetos ou iniciativas pessoais gostarias de lançar?",
-  "17) Como lidas com falhas e retrocessos na tua jornada?",
-  "18) Que legado gostarias de deixar a médio/longo prazo?",
-  "19) Quais são os primeiros 3 passos práticos que vais tomar nas próximas 4 semanas?",
-  "20) Escreve uma frase curta que resuma a tua missão pessoal (uma frase motivadora)."
+const perguntas = [
+"Como imaginas a tua vida ideal daqui a 10 anos?",
+"Quais são os teus valores essenciais?",
+"Quais são as pessoas mais importantes da tua vida?",
+"O que te inspira profundamente?",
+"Se fosses remover 3 coisas da tua vida hoje, o que seriam?",
+"Qual é o teu maior propósito?",
+"O que te impede de viver a tua vida ideal?",
+"Que habilidades precisas desenvolver para o teu futuro?",
+"Quais são os teus 3 maiores sonhos?",
+"O que te faz sentir verdadeiramente vivo(a)?",
+"Que impacto queres deixar no mundo?",
+"O que estás a fazer hoje que o teu eu do futuro agradeceria?",
+"Quais medos precisas superar?",
+"Que tipo de pessoa queres ser?",
+"Como defines sucesso pessoal?",
+"O que te traz paz interior?",
+"Qual é a tua missão na vida?",
+"Quais são as tuas prioridades espirituais ou morais?",
+"O que aconteceria se continuasses a tua vida exatamente como está?",
+"O que estás disposto(a) a mudar a partir de hoje?"
 ];
 
-// render
-const containerV = document.getElementById('perguntasVida');
-let htmlV = '';
-perguntasVida.forEach((q,i)=> {
-  htmlV += `<label>${q}</label><textarea id="vid_p${i}" placeholder="Escreve aqui a tua resposta..."></textarea>`;
+let html = "";
+perguntas.forEach((p,i)=>{
+  html += `<label><strong>${i+1}. ${p}</strong></label><textarea id="p${i}"></textarea>`;
 });
-containerV.innerHTML = htmlV;
+document.getElementById("perguntas").innerHTML = html;
 
-function obterInfoUtilizador(){
-  const username = localStorage.getItem('site_session') || '';
-  let profile = null;
-  if(username){
-    try { profile = JSON.parse(localStorage.getItem('profile_' + username)); }
-    catch(e){ profile = null; }
-  }
-  return { username, profile };
+function submeterWhatsApp(){
+let texto = "Projeto de Vida - Respostas:\n\n";
+perguntas.forEach((p,i)=>{
+    texto += `${i+1}. ${p}\nResposta: ${document.getElementById("p"+i).value}\n\n`;
+});
+
+window.open(
+  "https://wa.me/351931760077?text=" + encodeURIComponent(texto),
+  "_blank"
+);
 }
 
-function enviarWhatsApp(tipo){
-  const info = obterInfoUtilizador();
-  const nome = (info.profile && info.profile.nome) ? info.profile.nome : (info.username || 'Utilizador Anónimo');
-  let texto = `Noevas10 — Projeto de Vida\nUsuário: ${nome}\nData: ${new Date().toLocaleString()}\n\n`;
-  perguntasVida.forEach((q,i)=>{
-    const r = document.getElementById('vid_p'+i).value || '[sem resposta]';
-    texto += `${i+1}. ${q}\nResposta: ${r}\n\n`;
-  });
-  const tel = "351931760077";
-  const url = `https://wa.me/${tel}?text=${encodeURIComponent(texto)}`;
-  window.open(url, '_blank');
+async function gerarPDF(){
+const { jsPDF } = window.jspdf;
+const pdf = new jsPDF();
+
+pdf.setFontSize(18);
+pdf.text("Projeto de Vida", 10, 15);
+pdf.setFontSize(12);
+
+let y = 30;
+perguntas.forEach((p,i)=>{
+pdf.text(`${i+1}. ${p}`, 10, y);
+y += 7;
+pdf.text("Resposta: " + document.getElementById("p"+i).value, 10, y);
+y += 12;
+
+if(y > 270){
+    pdf.addPage();
+    y = 20;
 }
+});
 
-async function gerarPDF(tipo){
-  const { jsPDF } = window.jspdf;
-  const pdf = new jsPDF({unit:'pt', format:'a4'});
-  const info = obterInfoUtilizador();
-  const nome = (info.profile && info.profile.nome) ? info.profile.nome : (info.username || 'Utilizador Anónimo');
-
-  pdf.setFontSize(16);
-  pdf.text("Projeto de Vida — Noevas10", 40, 50);
-  pdf.setFontSize(11);
-  pdf.text(`Usuário: ${nome}`, 40, 70);
-  pdf.text(`Data: ${new Date().toLocaleString()}`, 40, 86);
-
-  let y = 110;
-  pdf.setFontSize(10);
-  perguntasVida.forEach((q,i)=>{
-    const qText = `${i+1}. ${q}`;
-    const rText = document.getElementById('vid_p'+i).value || '[sem resposta]';
-
-    const splitQ = pdf.splitTextToSize(qText, 500);
-    pdf.text(splitQ, 40, y);
-    y += splitQ.length * 12;
-
-    const splitR = pdf.splitTextToSize("Resposta: " + rText, 500);
-    pdf.text(splitR, 55, y);
-    y += splitR.length * 12 + 8;
-
-    if(y > 750){ pdf.addPage(); y = 40; }
-  });
-
-  pdf.save('Projeto_de_Vida_Noevas10.pdf');
+pdf.save("Projeto_de_Vida.pdf");
 }
+</script>
 
-// navbar visibility
+<script>
 (function(){
-  const username = localStorage.getItem('site_session');
-  if(username){
-    const loginLink = document.getElementById('loginLink');
-    const profileLink = document.getElementById('profileLink');
-    const logoutLink = document.getElementById('logoutLink');
-    if(loginLink) loginLink.style.display = 'none';
-    if(profileLink) profileLink.style.display = 'inline-block';
-    if(logoutLink) logoutLink.style.display = 'inline-block';
+  const user = localStorage.getItem("site_session");
+  if(user){
+    document.getElementById("loginLink").style.display = "none";
+    document.getElementById("profileLink").style.display = "inline-block";
+    document.getElementById("logoutLink").style.display = "inline-block";
   }
 })();
 </script>
+
 </body>
 </html>

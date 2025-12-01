@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Projeto Financeiro</title>
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+textarea {
+    width: 100%;
+    min-height: 90px;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.button {
+    padding: 14px 22px;
+    border-radius: 10px;
+    background: #4c28ff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 15px;
+    font-size: 16px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<nav class="navbar">
+<ul>
+<li><a href="index.html">Início</a></li>
+<li><a href="sobre.html">Sobre Mim</a></li>
+<li><a href="projetos.html">Projetos</a></li>
+<li><a href="contactos.html">Contactos</a></li>
+<li id="loginLink"><a href="login.html">Login</a></li>
+<li id="profileLink" style="display:none;"><a href="profile.html">Perfil</a></li>
+</ul>
+</nav>
+</header>
+
+<section class="container">
+<h1>Projeto Financeiro</h1>
+<p>Responde às perguntas de forma detalhada:</p>
+
+<form id="formProjeto">
+
+<div id="perguntas"></div>
+
+<button type="button" class="button" onclick="submeterWhatsApp()">📩 Enviar para WhatsApp</button>
+<button type="button" class="button" onclick="gerarPDF()">📄 Baixar PDF</button>
+
+</form>
+
+</section>
+
+<script>
+const perguntasFinanceiras = [
+"Qual é o teu rendimento mensal atual?",
+"Quais são as tuas principais despesas fixas?",
+"O que gostavas de mudar nos teus hábitos financeiros?",
+"Quanto dinheiro consegues poupar por mês?",
+"Tens dívidas? Se sim, quais?",
+"Quais são as tuas maiores dificuldades com dinheiro?",
+"Quais são os teus objetivos financeiros para 1 ano?",
+"... 13 PERGUNTAS EXTRA aqui ..."
+];
+
+let pHTML = "";
+perguntasFinanceiras.forEach((p,i)=>{
+    pHTML += `<label><strong>${i+1}. ${p}</strong></label><textarea id="p${i}"></textarea>`;
+});
+document.getElementById("perguntas").innerHTML = pHTML;
+
+function submeterWhatsApp(){
+let texto = "Projeto Financeiro - Respostas:\n";
+perguntasFinanceiras.forEach((p,i)=>{
+    texto += `\n${i+1}. ${p}\nResposta: ${document.getElementById("p"+i).value}\n`;
+});
+const tel = "351931760077";
+const url = `https://wa.me/${tel}?text=${encodeURIComponent(texto)}`;
+window.open(url, "_blank");
+}
+
+async function gerarPDF(){
+const { jsPDF } = window.jspdf;
+const pdf = new jsPDF();
+
+pdf.setFontSize(18);
+pdf.text("Projeto Financeiro", 10, 15);
+pdf.setFontSize(12);
+
+let y = 30;
+perguntasFinanceiras.forEach((p,i)=>{
+pdf.text(`${i+1}. ${p}`, 10, y);
+y += 7;
+pdf.text("Resposta: " + document.getElementById("p"+i).value, 10, y);
+y += 12;
+if(y > 270){ pdf.addPage(); y = 20; }
+});
+
+pdf.save("Projeto_Financeiro.pdf");
+}
+</script>
+
+<script>
+const loggedUser = localStorage.getItem("loggedUser");
+if (loggedUser) {
+document.getElementById("loginLink").style.display = "none";
+document.getElementById("profileLink").style.display = "inline-block";
+}
+</script>
+
+</body>
+</html>

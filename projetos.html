@@ -1,55 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Projetos - Noevas10</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projetos - Noevas10</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <nav class="glass-nav">
-    <div class="nav-container">
-      <div class="logo">Noevas10</div>
-      <ul class="nav-links">
-        <li><a href="index.html">Início</a></li>
-        <li><a href="sobre.html">Sobre Mim</a></li>
-        <li><a href="projetos.html" class="active">Projetos</a></li>
-        <li><a href="contactos.html">Contactos</a></li>
-        <li id="loginLink"><a href="login.html">Login</a></li>
-        <li id="profileLink" style="display:none;"><a href="profile.html">Perfil</a></li>
-        <li id="logoutLink" style="display:none;"><a href="#" onclick="logoutHandler();return false;">Sair</a></li>
-      </ul>
-      <div class="nav-cta"><a href="login.html">Entrar</a></div>
+<nav class="glass-nav">
+  <div class="nav-container">
+    <div class="logo">Noevas10</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Início</a></li>
+      <li><a href="sobre.html">Sobre Mim</a></li>
+      <li><a href="projetos.html" class="active">Projetos</a></li>
+      <li><a href="contactos.html">Contactos</a></li>
+
+      <li id="loginLink"><a href="login.html">Login</a></li>
+      <li id="profileLink" style="display:none;"><a href="profile.html">Perfil</a></li>
+      <li id="logoutLink" style="display:none;"><a href="#" onclick="logoutHandler()">Sair</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="container" style="padding-top:120px;">
+  <h1>Projetos</h1>
+
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <h2>Projeto Financeiro</h2>
+      <p>Organiza e planeia a tua vida financeira.</p>
+      <a class="button" href="financeiro.html">Abrir</a>
     </div>
-  </nav>
 
-  <main class="container" style="padding-top:120px">
-    <section>
-      <h1>Projetos</h1>
+    <div class="project-card">
+      <h2>Projeto Pessoal</h2>
+      <p>Explora e desenvolve o teu lado pessoal.</p>
+      <a class="button" href="pessoal.html">Abrir</a>
+    </div>
 
-      <div class="cards">
-        <div class="card">
-          <h3>Projeto de Vida</h3>
-          <p>Autoconhecimento, rotinas e plano de metas pessoais.</p>
-          <a class="btn-card" href="projeto-vida.html">Ver detalhes</a>
-        </div>
+    <div class="project-card">
+      <h2>Projeto de Vida</h2>
+      <p>Define objetivos e constrói o teu propósito.</p>
+      <a class="button" href="vida.html">Abrir</a>
+    </div>
 
-        <div class="card">
-          <h3>Projeto Financeiro</h3>
-          <p>Gestão das finanças pessoais, poupança e planeamento.</p>
-          <a class="btn-card" href="projeto-financeiro.html">Ver detalhes</a>
-        </div>
+    <!-- ⭐ CRIAR O MEU PROJETO -->
+    <div class="project-card highlight">
+      <h2>✨ Criar o Meu Projeto</h2>
+      <p>Escolhe entre projeto financeiro, pessoal ou de vida.</p>
+      <a class="button" href="criar-projeto.html">Começar</a>
+    </div>
 
-        <div class="card">
-          <h3>Projeto Profissional</h3>
-          <p>Carreira, competências e preparação para oportunidades.</p>
-          <a class="btn-card" href="projeto-profissional.html">Ver detalhes</a>
-        </div>
-      </div>
-    </section>
-  </main>
+  </div>
+</main>
 
-  <script src="script.js"></script>
+<script>
+(function(){
+  const user = localStorage.getItem("site_session");
+  if(user){
+    document.getElementById("loginLink").style.display = "none";
+    document.getElementById("profileLink").style.display = "inline-block";
+    document.getElementById("logoutLink").style.display = "inline-block";
+  }
+})();
+</script>
+
 </body>
 </html>

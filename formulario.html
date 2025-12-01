@@ -16,6 +16,9 @@
         <li><a href="sobre.html">Sobre Mim</a></li>
         <li><a href="projetos.html">Projetos</a></li>
         <li><a href="contactos.html">Contactos</a></li>
+        <li id="loginLink"><a href="login.html">Login</a></li>
+        <li id="profileLink" style="display:none;"><a href="profile.html">Perfil</a></li>
+        <li id="logoutLink" style="display:none;"><a href="#" onclick="logoutHandler();return false;">Sair</a></li>
       </ul>
       <div class="nav-cta"><a href="login.html">Entrar</a></div>
     </div>
@@ -24,13 +27,12 @@
   <main class="container" style="padding-top:120px">
     <section>
       <h1>Formulário</h1>
-      <p>Abre este formulário para recolher informações</p>
 
       <div class="form-container">
         <label>Nome</label>
-        <input class="input-field" type="text" id="f_nome">
+        <input class="input-field" id="f_nome" type="text">
         <label>Idade</label>
-        <input class="input-field" type="number" id="f_idade">
+        <input class="input-field" id="f_idade" type="number">
         <label>Localidade</label>
         <select class="input-field" id="f_localidade">
           <option>Lisboa</option>
@@ -40,20 +42,13 @@
           <option>Faro</option>
         </select>
         <label>Profissão</label>
-        <input class="input-field" type="text" id="f_profissao">
+        <input class="input-field" id="f_profissao" type="text">
         <label>Objetivos de Vida</label>
         <textarea class="input-field" id="f_objetivos"></textarea>
-        <label>Tipo de apoio</label>
-        <select class="input-field" id="f_apoio">
-          <option>Pessoal</option>
-          <option>Financeiro</option>
-          <option>Profissional</option>
-        </select>
 
         <button class="btn-primary" onclick="enviarForm()">Enviar</button>
         <p id="form-msg" class="msg"></p>
       </div>
-
     </section>
   </main>
 
@@ -64,5 +59,6 @@ function enviarForm(){
 }
 </script>
 
+<script src="script.js"></script>
 </body>
 </html>

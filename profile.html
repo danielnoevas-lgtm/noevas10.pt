@@ -3,79 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projetos - Noevas10</title>
+<title>Perfil</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- NAVBAR -->
 <nav class="glass-nav">
   <div class="nav-container">
     <div class="logo">Noevas10</div>
     <ul class="nav-links">
       <li><a href="index.html">Início</a></li>
       <li><a href="sobre.html">Sobre Mim</a></li>
-      <li><a href="projetos.html" class="active">Projetos</a></li>
+      <li><a href="projetos.html">Projetos</a></li>
       <li><a href="contactos.html">Contactos</a></li>
 
       <li id="loginLink"><a href="login.html">Login</a></li>
-      <li id="profileLink" style="display:none;"><a href="profile.html">Perfil</a></li>
+      <li id="profileLink" style="display:none;" class="active"><a href="profile.html">Perfil</a></li>
       <li id="logoutLink" style="display:none;"><a href="#" onclick="logoutHandler(); return false;">Sair</a></li>
     </ul>
-
-    <div class="nav-cta"><a href="login.html">Entrar</a></div>
   </div>
 </nav>
 
-<!-- CONTEÚDO -->
 <main class="container" style="padding-top:120px;">
-  <h1>Projetos</h1>
-  <p>Escolhe um dos teus projetos ou cria um novo.</p>
+  <h1>O Meu Perfil</h1>
 
-  <div class="projects-grid">
+  <form id="profileForm" class="profile-form">
 
-    <!-- PROJETO FINANCEIRO -->
-    <div class="project-card">
-      <h2>Projeto Financeiro</h2>
-      <p>Constrói o teu plano financeiro completo.</p>
-      <a class="button" href="financeiro.html">Abrir</a>
-    </div>
+      <label>Nome:</label>
+      <input type="text" id="nome">
 
-    <!-- PROJETO PESSOAL -->
-    <div class="project-card">
-      <h2>Projeto Pessoal</h2>
-      <p>Define objetivos e estrutura o teu desenvolvimento pessoal.</p>
-      <a class="button" href="pessoal.html">Abrir</a>
-    </div>
+      <label>Email:</label>
+      <input type="email" id="email">
 
-    <!-- PROJETO DE VIDA -->
-    <div class="project-card">
-      <h2>Projeto de Vida</h2>
-      <p>Cria um plano de vida com propósito e direção.</p>
-      <a class="button" href="vida.html">Abrir</a>
-    </div>
+      <label>Idade:</label>
+      <input type="number" id="idade">
 
-    <!-- ⭐ NOVO — CRIAR O MEU PROJETO -->
-    <div class="project-card highlight">
-      <h2>✨ Criar o Meu Projeto</h2>
-      <p>Escolhe entre os três tipos de projeto e começa agora.</p>
-      <a class="button" href="criar-projeto.html">Criar</a>
-    </div>
+      <label>Profissão:</label>
+      <input type="text" id="profissao">
 
-  </div>
+      <label>Telefone:</label>
+      <input type="text" id="telefone">
+
+      <label>Localidade:</label>
+      <select id="localidade">
+        <option value="">Selecione</option>
+        <option>Lisboa</option>
+        <option>Porto</option>
+        <option>Coimbra</option>
+        <option>Braga</option>
+        <option>Setúbal</option>
+        <option>Faro</option>
+        <option>Aveiro</option>
+      </select>
+
+      <label>Frase Motivadora:</label>
+      <textarea id="frase" rows="3"></textarea>
+
+      <button type="button" class="button" onclick="guardarPerfil()">Guardar</button>
+
+  </form>
 </main>
 
 <script>
-// Mostrar links conforme login
 (function(){
-  const username = localStorage.getItem('site_session');
-  if(username){
-    document.getElementById('loginLink').style.display = "none";
-    document.getElementById('profileLink').style.display = "inline-block";
-    document.getElementById('logoutLink').style.display = "inline-block";
+  const logged = localStorage.getItem("site_session");
+
+  if(!logged){
+      window.location.href = "login.html";
+      return;
   }
+
+  document.getElementById("loginLink").style.display = "none";
+  document.getElementById("profileLink").style.display = "inline-block";
+  document.getElementById("logoutLink").style.display = "inline-block";
+
+  const dados = JSON.parse(localStorage.getItem("user_profile") || "{}");
+
+  document.getElementById("nome").value = dados.nome || "";
+  document.getElementById("email").value = dados.email || "";
+  document.getElementById("idade").value = dados.idade || "";
+  document.getElementById("profissao").value = dados.profissao || "";
+  document.getElementById("telefone").value = dados.telefone || "";
+  document.getElementById("localidade").value = dados.localidade || "";
+  document.getElementById("frase").value = dados.frase || "";
+
 })();
+
+function guardarPerfil(){
+  const dados = {
+    nome: document.getElementById("nome").value,
+    email: document.getElementById("email").value,
+    idade: document.getElementById("idade").value,
+    profissao: document.getElementById("profissao").value,
+    telefone: document.getElementById("telefone").value,
+    localidade: document.getElementById("localidade").value,
+    frase: document.getElementById("frase").value
+  };
+
+  localStorage.setItem("user_profile", JSON.stringify(dados));
+  alert("Perfil atualizado com sucesso!");
+}
 </script>
 
 </body>

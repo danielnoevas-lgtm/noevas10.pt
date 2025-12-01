@@ -5,38 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projeto Financeiro</title>
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        .container { max-width: 900px; margin: 120px auto; padding: 20px; color: white; }
-        h1 { font-size: 36px; }
-        p { line-height: 1.6; }
-    </style>
 </head>
 <body>
 
-<header>
+    <!-- NAVBAR -->
     <nav class="navbar">
         <div class="logo">Noevas10</div>
         <ul class="nav-links">
             <li><a href="index.html">Início</a></li>
             <li><a href="sobre.html">Sobre Mim</a></li>
-            <li><a href="projetos.html">Projetos</a></li>
+            <li><a href="projetos.html" class="active">Projetos</a></li>
             <li><a href="contactos.html">Contactos</a></li>
-            <li><a href="profile.html">Perfil</a></li>
+            <li><a href="login.html" id="loginBtn">Login</a></li>
+            <li><a href="profile.html" id="profileBtn" style="display:none;">Perfil</a></li>
         </ul>
     </nav>
-</header>
 
-<div class="container">
-    <h1>Projeto Financeiro</h1>
+    <div class="container">
+        <h1>Projeto Financeiro</h1>
 
-    <p>
-        O Projeto Financeiro tem como objetivo ajudar-te a organizar a tua vida económica,
-        definindo metas claras e desenvolvendo uma estratégia sustentável para o teu futuro.
-    </p>
+        <h2>1. Diagnóstico Financeiro</h2>
+        <p>
+        O primeiro passo para construir estabilidade é entender exatamente onde estás. Quanto ganhas, quanto gastas, onde estão as tuas maiores despesas e onde podes melhorar.
+        </p>
 
-    <a href="criar-projeto.html" class="btn">Criar um Projeto Financeiro</a>
-</div>
+        <h2>2. Estabilidade e Organização</h2>
+        <p>
+        Um bom plano financeiro baseia-se em quatro pilares: controlo, poupança, segurança e investimento.
+        </p>
 
+        <h2>3. Eliminar Dívidas</h2>
+        <p>
+        As dívidas são uma das maiores barreiras ao progresso. É essencial eliminá-las com estratégia e disciplina.
+        </p>
+
+        <h2>4. Aumentar Rendimentos</h2>
+        <p>
+        Não se trata apenas de cortar gastos — trata-se também de desenvolver novas fontes de rendimento.
+        </p>
+
+        <h2>5. Investimentos Inteligentes</h2>
+        <p>
+        Investir é uma forma poderosa de garantir estabilidade futura. PPR, fundos, ETFs e imobiliário são opções sólidas.
+        </p>
+
+        <h2>6. Planeamento a Longo Prazo</h2>
+        <p>
+        A independência financeira constrói-se com tempo, consistência e decisões inteligentes.
+        </p>
+    </div>
+
+    <script src="auth.js"></script>
 </body>
 </html>

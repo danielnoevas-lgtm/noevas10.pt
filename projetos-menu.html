@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Criar Projeto</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<nav class="navbar">
+<ul>
+<li><a href="index.html">Início</a></li>
+<li><a href="sobre.html">Sobre Mim</a></li>
+<li><a href="projetos.html">Projetos</a></li>
+<li><a href="contactos.html">Contactos</a></li>
+<li id="loginLink"><a href="login.html">Login</a></li>
+<li id="profileLink" style="display:none;"><a href="profile.html">Perfil</a></li>
+</ul>
+</nav>
+</header>
+
+<section class="container">
+<h1>Escolha o Tipo de Projeto</h1>
+
+<div class="cards">
+    <a href="financeiro.html" class="card">
+        <h3>💰 Projeto Financeiro</h3>
+        <p>Planeamento financeiro completo.</p>
+    </a>
+
+    <a href="pessoal.html" class="card">
+        <h3>🧠 Projeto Pessoal</h3>
+        <p>Crescimento pessoal e organização interna.</p>
+    </a>
+
+    <a href="vida.html" class="card">
+        <h3>🌱 Projeto de Vida</h3>
+        <p>Objetivos para o futuro e propósito.</p>
+    </a>
+</div>
+
+</section>
+
+<script>
+const loggedUser = localStorage.getItem("loggedUser");
+if (loggedUser) {
+document.getElementById("loginLink").style.display = "none";
+document.getElementById("profileLink").style.display = "inline-block";
+}
+</script>
+
+</body>
+</html>

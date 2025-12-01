@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projetos - Noevas10</title>
+<title>Criar Projeto</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- NAVBAR -->
 <nav class="glass-nav">
   <div class="nav-container">
     <div class="logo">Noevas10</div>
@@ -23,51 +22,37 @@
       <li id="profileLink" style="display:none;"><a href="profile.html">Perfil</a></li>
       <li id="logoutLink" style="display:none;"><a href="#" onclick="logoutHandler(); return false;">Sair</a></li>
     </ul>
-
-    <div class="nav-cta"><a href="login.html">Entrar</a></div>
   </div>
 </nav>
 
-<!-- CONTEÚDO -->
 <main class="container" style="padding-top:120px;">
-  <h1>Projetos</h1>
-  <p>Escolhe um dos teus projetos ou cria um novo.</p>
+  <h1>Criar o Meu Projeto</h1>
+  <p>Escolhe o tipo de projeto que queres criar.</p>
 
   <div class="projects-grid">
 
-    <!-- PROJETO FINANCEIRO -->
     <div class="project-card">
       <h2>Projeto Financeiro</h2>
-      <p>Constrói o teu plano financeiro completo.</p>
-      <a class="button" href="financeiro.html">Abrir</a>
+      <p>Organiza a tua vida financeira em 20 perguntas.</p>
+      <a class="button" href="financeiro.html">Criar</a>
     </div>
 
-    <!-- PROJETO PESSOAL -->
     <div class="project-card">
       <h2>Projeto Pessoal</h2>
-      <p>Define objetivos e estrutura o teu desenvolvimento pessoal.</p>
-      <a class="button" href="pessoal.html">Abrir</a>
+      <p>Desenvolve-te com clareza e objetivos.</p>
+      <a class="button" href="pessoal.html">Criar</a>
     </div>
 
-    <!-- PROJETO DE VIDA -->
     <div class="project-card">
       <h2>Projeto de Vida</h2>
-      <p>Cria um plano de vida com propósito e direção.</p>
-      <a class="button" href="vida.html">Abrir</a>
-    </div>
-
-    <!-- ⭐ NOVO — CRIAR O MEU PROJETO -->
-    <div class="project-card highlight">
-      <h2>✨ Criar o Meu Projeto</h2>
-      <p>Escolhe entre os três tipos de projeto e começa agora.</p>
-      <a class="button" href="criar-projeto.html">Criar</a>
+      <p>Constrói um plano profundo e alinhado com quem és.</p>
+      <a class="button" href="vida.html">Criar</a>
     </div>
 
   </div>
 </main>
 
 <script>
-// Mostrar links conforme login
 (function(){
   const username = localStorage.getItem('site_session');
   if(username){

@@ -7,51 +7,13 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        .container {
-            max-width: 900px;
-            margin: 120px auto;
-            padding: 20px;
-            color: white;
-        }
-
-        h1 {
-            font-size: 36px;
-            margin-bottom: 30px;
-        }
-
-        .project-box {
-            background: rgba(255, 255, 255, 0.06);
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 12px;
-            transition: 0.3s;
-        }
-
-        .project-box:hover {
-            transform: scale(1.03);
-            background: rgba(255, 255, 255, 0.12);
-        }
-
-        .project-box h2 {
-            color: #b981ff;
-            margin-bottom: 10px;
-        }
-
-        a.btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background: #8a2be2;
-            color: white;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        a.btn:hover {
-            background: #a95cff;
-        }
+        .container { max-width: 900px; margin: 120px auto; padding: 20px; color: white; }
+        h1 { font-size: 36px; margin-bottom: 25px; }
+        .box { background: rgba(255,255,255,0.08); padding: 25px; border-radius: 12px; margin-bottom: 20px; transition: 0.3s; }
+        .box:hover { transform: scale(1.02); background: rgba(255,255,255,0.14); }
+        .btn { padding: 10px 20px; background: #8a2be2; border-radius: 8px; color: white; text-decoration: none; font-weight: bold; }
+        .btn:hover { background: #a45bff; }
+        h2 { color: #c29cff; }
     </style>
 </head>
 <body>
@@ -62,7 +24,7 @@
         <ul class="nav-links">
             <li><a href="index.html">Início</a></li>
             <li><a href="sobre.html">Sobre Mim</a></li>
-            <li><a class="active" href="projetos.html">Projetos</a></li>
+            <li><a href="projetos.html" class="active">Projetos</a></li>
             <li><a href="contactos.html">Contactos</a></li>
             <li><a href="profile.html">Perfil</a></li>
         </ul>
@@ -72,34 +34,29 @@
 <div class="container">
     <h1>Projetos</h1>
 
-    <!-- Projeto Financeiro -->
-    <div class="project-box">
+    <div class="box">
         <h2>💰 Projeto Financeiro</h2>
-        <p>Organiza e planeia a tua vida financeira.</p>
-        <a class="btn" href="projeto-financeiro.html">Abrir</a>
+        <p>Melhora a tua estrutura financeira com um plano personalizado.</p>
+        <a href="projeto-financeiro-info.html" class="btn">Abrir</a>
     </div>
 
-    <!-- Projeto Pessoal -->
-    <div class="project-box">
+    <div class="box">
         <h2>🧠 Projeto Pessoal</h2>
-        <p>Explora e desenvolve o teu lado pessoal.</p>
-        <a class="btn" href="projeto-profissional.html">Abrir</a>
+        <p>Foca no teu desenvolvimento emocional, mental e comportamental.</p>
+        <a href="projeto-pessoal-info.html" class="btn">Abrir</a>
     </div>
 
-    <!-- Projeto de Vida -->
-    <div class="project-box">
+    <div class="box">
         <h2>🎯 Projeto de Vida</h2>
-        <p>Define objetivos e constrói o teu propósito.</p>
-        <a class="btn" href="projeto-vida.html">Abrir</a>
+        <p>Define uma visão clara para o teu futuro e cria o teu caminho.</p>
+        <a href="projeto-vida-info.html" class="btn">Abrir</a>
     </div>
 
-    <!-- Criar o Meu Projeto -->
-    <div class="project-box">
-        <h2>✨ Criar o Meu Projeto</h2>
-        <p>Escolhe entre projeto financeiro, pessoal ou de vida.</p>
-        <a class="btn" href="criar-projeto.html">Começar</a>
+    <div class="box">
+        <h2>📘 Criar o Meu Projeto</h2>
+        <p>Cria um projeto financeiro, pessoal ou de vida totalmente personalizado.</p>
+        <a href="criar-projeto.html" class="btn">Criar Projeto</a>
     </div>
-
 </div>
 
 </body>

@@ -1,18 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
 <title>Projeto Pessoal</title>
 <link rel="stylesheet" href="style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <style>
-  textarea{width:100%;min-height:90px;border-radius:8px;padding:10px;margin-bottom:14px}
-  label{display:block;margin:10px 0 6px;font-weight:600}
-  .button{padding:12px 18px;border-radius:10px;background:#7a3cff;color:#fff;border:none;cursor:pointer;margin-top:10px;width:100%}
-  .actions{display:flex;gap:12px;flex-direction:column}
+textarea {
+    width: 100%;
+    min-height: 90px;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.button {
+    padding: 14px 22px;
+    border-radius: 10px;
+    background: #6a00ff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 15px;
+    font-size: 16px;
+}
 </style>
+
 </head>
+
 <body>
 
 <nav class="glass-nav">
@@ -21,129 +37,105 @@
     <ul class="nav-links">
       <li><a href="index.html">Início</a></li>
       <li><a href="sobre.html">Sobre Mim</a></li>
-      <li><a href="projetos.html">Projetos</a></li>
+      <li><a href="projetos.html" class="active">Projetos</a></li>
       <li><a href="contactos.html">Contactos</a></li>
+
       <li id="loginLink"><a href="login.html">Login</a></li>
       <li id="profileLink" style="display:none;"><a href="profile.html">Perfil</a></li>
-      <li id="logoutLink" style="display:none;"><a href="#" onclick="logoutHandler();return false;">Sair</a></li>
+      <li id="logoutLink" style="display:none;"><a href="#" onclick="logoutHandler()">Sair</a></li>
     </ul>
-    <div class="nav-cta"><a href="login.html">Entrar</a></div>
   </div>
 </nav>
 
-<main class="container" style="padding-top:120px">
-  <h1>Projeto Pessoal</h1>
-  <p>Responde com sinceridade — isto ajuda a montar um plano de desenvolvimento pessoal.</p>
+<section class="container" style="padding-top:120px;">
+<h1>Projeto Pessoal</h1>
 
-  <form id="formProjetoPessoal" onsubmit="return false;">
-    <div id="perguntasPessoal"></div>
+<form id="formProjeto">
+<div id="perguntas"></div>
 
-    <div class="actions">
-      <button type="button" class="button" onclick="enviarWhatsApp('pessoal')">📩 Enviar para WhatsApp</button>
-      <button type="button" class="button" onclick="gerarPDF('pessoal')">📄 Baixar PDF</button>
-    </div>
-  </form>
-</main>
+<button type="button" class="button" onclick="submeterWhatsApp()">📩 Enviar para WhatsApp</button>
+<button type="button" class="button" onclick="gerarPDF()">📄 Baixar PDF</button>
+
+</form>
+</section>
 
 <script>
-const perguntasPessoais = [
-  "1) Quais são os teus três principais valores pessoais?",
-  "2) O que te motiva a acordar todos os dias?",
-  "3) Quais são as tuas principais forças/competências pessoais?",
-  "4) Quais são os hábitos que gostarias de criar?",
-  "5) Quais são os hábitos que gostarias de eliminar?",
-  "6) Como avalias o teu equilíbrio vida/trabalho (1-10)?",
-  "7) Quais são os teus objetivos pessoais para 12 meses?",
-  "8) Tens uma rotina matinal? Se sim, descreve-a.",
-  "9) Tens objetivos de saúde/fitness? Quais e qual o prazo?",
-  "10) Como geres o teu tempo atualmente?",
-  "11) Que competências gostarias de desenvolver (soft skills)?",
-  "12) Tens mentores ou pessoas que te inspiram? Quem e porquê?",
-  "13) Como lidas com stress e frustração?",
-  "14) Que leitura/formação estás disposto a fazer nos próximos 6 meses?",
-  "15) Tens projetos criativos ou hobbies que queres desenvolver?",
-  "16) O que te impede de atingir os teus objetivos pessoais hoje?",
-  "17) Como medes o teu progresso pessoal (journaling, metas, KPI)?",
-  "18) Qual é a tua maior realização até hoje e porquê?",
-  "19) Que suporte precisas para acelerar o teu desenvolvimento pessoal?",
-  "20) Escreve uma frase motivadora/palavras que queiras recordar diariamente."
+const perguntas = [
+"Quem és tu hoje? Descreve-te em 3 frases.",
+"Quais são os teus maiores pontos fortes?",
+"Quais são os teus maiores pontos a melhorar?",
+"O que te faz perder motivação?",
+"O que te faz ganhar motivação?",
+"Qual é o teu maior sonho pessoal?",
+"O que precisas de mudar para o alcançar?",
+"Que hábitos positivos gostarias de desenvolver?",
+"Que hábitos negativos queres eliminar?",
+"Quem são as 3 pessoas que mais te influenciam e porquê?",
+"Como lidas com stress e pressão?",
+"Qual é o teu maior medo atualmente?",
+"Qual foi a maior lição que aprendeste nos últimos anos?",
+"Quais são as tuas prioridades neste momento?",
+"Como avalias a tua saúde emocional?",
+"Como avalias a tua disciplina pessoal?",
+"O que faria a tua vida mais equilibrada?",
+"Como gostarias de ser lembrado(a)?",
+"O que te traz verdadeira felicidade?",
+"O que estás disposto(a) a fazer para evoluir?"
 ];
 
-// render
-const containerP = document.getElementById('perguntasPessoal');
-let htmlP = '';
-perguntasPessoais.forEach((q,i)=> {
-  htmlP += `<label>${q}</label><textarea id="pes_p${i}" placeholder="Escreve aqui..."></textarea>`;
+let html = "";
+perguntas.forEach((p,i)=>{
+  html += `<label><strong>${i+1}. ${p}</strong></label><textarea id="p${i}"></textarea>`;
 });
-containerP.innerHTML = htmlP;
+document.getElementById("perguntas").innerHTML = html;
 
-function obterInfoUtilizador(){
-  const username = localStorage.getItem('site_session') || '';
-  let profile = null;
-  if(username){
-    try { profile = JSON.parse(localStorage.getItem('profile_' + username)); }
-    catch(e){ profile = null; }
-  }
-  return { username, profile };
+function submeterWhatsApp(){
+let texto = "Projeto Pessoal - Respostas:\n\n";
+perguntas.forEach((p,i)=>{
+    texto += `${i+1}. ${p}\nResposta: ${document.getElementById("p"+i).value}\n\n`;
+});
+
+window.open(
+  "https://wa.me/351931760077?text=" + encodeURIComponent(texto),
+  "_blank"
+);
 }
 
-function enviarWhatsApp(tipo){
-  const info = obterInfoUtilizador();
-  const nome = (info.profile && info.profile.nome) ? info.profile.nome : (info.username || 'Utilizador Anónimo');
-  let texto = `Noevas10 — Projeto Pessoal\nUsuário: ${nome}\nData: ${new Date().toLocaleString()}\n\n`;
-  perguntasPessoais.forEach((q,i)=>{
-    const r = document.getElementById('pes_p'+i).value || '[sem resposta]';
-    texto += `${i+1}. ${q}\nResposta: ${r}\n\n`;
-  });
-  const tel = "351931760077";
-  const url = `https://wa.me/${tel}?text=${encodeURIComponent(texto)}`;
-  window.open(url, '_blank');
+async function gerarPDF(){
+const { jsPDF } = window.jspdf;
+const pdf = new jsPDF();
+
+pdf.setFontSize(18);
+pdf.text("Projeto Pessoal", 10, 15);
+pdf.setFontSize(12);
+
+let y = 30;
+perguntas.forEach((p,i)=>{
+pdf.text(`${i+1}. ${p}`, 10, y);
+y += 7;
+pdf.text("Resposta: " + document.getElementById("p"+i).value, 10, y);
+y += 12;
+
+if(y > 270){
+    pdf.addPage();
+    y = 20;
 }
+});
 
-async function gerarPDF(tipo){
-  const { jsPDF } = window.jspdf;
-  const pdf = new jsPDF({unit:'pt', format:'a4'});
-  const info = obterInfoUtilizador();
-  const nome = (info.profile && info.profile.nome) ? info.profile.nome : (info.username || 'Utilizador Anónimo');
-
-  pdf.setFontSize(16);
-  pdf.text("Projeto Pessoal — Noevas10", 40, 50);
-  pdf.setFontSize(11);
-  pdf.text(`Usuário: ${nome}`, 40, 70);
-  pdf.text(`Data: ${new Date().toLocaleString()}`, 40, 86);
-
-  let y = 110;
-  pdf.setFontSize(10);
-  perguntasPessoais.forEach((q,i)=>{
-    const qText = `${i+1}. ${q}`;
-    const rText = document.getElementById('pes_p'+i).value || '[sem resposta]';
-
-    const splitQ = pdf.splitTextToSize(qText, 500);
-    pdf.text(splitQ, 40, y);
-    y += splitQ.length * 12;
-
-    const splitR = pdf.splitTextToSize("Resposta: " + rText, 500);
-    pdf.text(splitR, 55, y);
-    y += splitR.length * 12 + 8;
-
-    if(y > 750){ pdf.addPage(); y = 40; }
-  });
-
-  pdf.save('Projeto_Pessoal_Noevas10.pdf');
+pdf.save("Projeto_Pessoal.pdf");
 }
+</script>
 
-// navbar visibility
+<script>
 (function(){
-  const username = localStorage.getItem('site_session');
-  if(username){
-    const loginLink = document.getElementById('loginLink');
-    const profileLink = document.getElementById('profileLink');
-    const logoutLink = document.getElementById('logoutLink');
-    if(loginLink) loginLink.style.display = 'none';
-    if(profileLink) profileLink.style.display = 'inline-block';
-    if(logoutLink) logoutLink.style.display = 'inline-block';
+  const user = localStorage.getItem("site_session");
+  if(user){
+    document.getElementById("loginLink").style.display = "none";
+    document.getElementById("profileLink").style.display = "inline-block";
+    document.getElementById("logoutLink").style.display = "inline-block";
   }
 })();
 </script>
+
 </body>
 </html>

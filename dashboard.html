@@ -16,28 +16,25 @@
         <li><a href="sobre.html">Sobre Mim</a></li>
         <li><a href="projetos.html">Projetos</a></li>
         <li><a href="contactos.html">Contactos</a></li>
+        <li id="loginLink"><a href="login.html">Login</a></li>
+        <li id="profileLink" style="display:none;"><a href="profile.html">Perfil</a></li>
+        <li id="logoutLink" style="display:none;"><a href="#" onclick="logoutHandler();return false;">Sair</a></li>
       </ul>
       <div class="nav-cta"><a href="login.html">Entrar</a></div>
     </div>
   </nav>
 
   <main class="dashboard" style="padding-top:120px">
-    <h2>Bem-vindo à tua Área Pessoal</h2>
-    <p id="welcome">A carregar dados...</p>
-    <p><button class="btn-primary" onclick="sair()">Terminar Sessão</button></p>
+    <h2 id="welcome">A carregar…</h2>
+    <p>Esta é a tua dashboard de teste. Aqui podes aceder ao teu perfil e à informação guardada.</p>
+    <p><a class="btn" href="profile.html">Ir para Perfil</a></p>
+    <p><button class="btn-primary" onclick="logoutHandler()">Terminar Sessão</button></p>
   </main>
 
 <script>
-(function(){
-  const session = localStorage.getItem('site_session');
-  if(!session){ window.location.href='login.html'; return; }
-  document.getElementById('welcome').innerText = 'Olá, ' + session + '! Está é a tua dashboard (teste).';
-})();
-function sair(){
-  localStorage.removeItem('site_session');
-  window.location.href='index.html';
-}
+  document.addEventListener('DOMContentLoaded', function(){ initDashboardPage(); });
 </script>
 
+<script src="script.js"></script>
 </body>
 </html>

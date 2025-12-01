@@ -16,33 +16,23 @@
         <li><a href="sobre.html">Sobre Mim</a></li>
         <li><a href="projetos.html">Projetos</a></li>
         <li><a href="contactos.html">Contactos</a></li>
+        <li id="loginLink"><a href="login.html">Login</a></li>
+        <li id="profileLink" style="display:none;"><a href="profile.html">Perfil</a></li>
+        <li id="logoutLink" style="display:none;"><a href="#" onclick="logoutHandler();return false;">Sair</a></li>
       </ul>
       <div class="nav-cta"><a href="login.html">Entrar</a></div>
     </div>
   </nav>
 
-  <div class="form-container" style="margin-top:130px">
+  <div class="form-container" style="margin-top:120px">
     <h2>Criar Conta (teste)</h2>
-    <input id="suUser" class="input-field" placeholder="Nome de utilizador">
+    <input id="suNome" class="input-field" placeholder="Nome completo">
+    <input id="suEmail" class="input-field" placeholder="Email ou username">
     <input id="suPass" class="input-field" type="password" placeholder="Password">
-    <button class="btn-primary" onclick="criarConta()">Criar Conta</button>
-
-    <p class="form-link">Já tens conta? <a href="login.html">Entrar</a></p>
+    <button class="btn-primary" onclick="doSignup()">Criar Conta</button>
     <p id="signup-msg" class="msg"></p>
   </div>
 
-<script>
-function criarConta(){
-  const user = document.getElementById('suUser').value;
-  const pass = document.getElementById('suPass').value;
-  if(!user || !pass){ document.getElementById('signup-msg').innerText='Preenche ambos os campos.'; return; }
-  localStorage.setItem('site_user', user);
-  localStorage.setItem('site_pass', pass);
-  localStorage.setItem('site_session', user);
-  document.getElementById('signup-msg').innerText = 'Conta criada com sucesso! A redirecionar...';
-  setTimeout(()=> window.location.href='dashboard.html',900);
-}
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>

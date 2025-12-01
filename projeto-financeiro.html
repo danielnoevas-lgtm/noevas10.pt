@@ -1,72 +1,42 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="pt">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Projeto Financeiro — Noevas10</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .hero { padding:72px 20px; text-align:center; background: linear-gradient(135deg,#3aa8ff,#8b5cf6); color:#fff; border-radius:0 0 18px 18px; }
-    .wrap-narrow{max-width:980px;margin:36px auto;padding:20px}
-    .panel{background:rgba(255,255,255,0.03);padding:22px;border-radius:12px;border:1px solid rgba(255,255,255,0.06); box-shadow:0 10px 30px rgba(2,6,23,0.5)}
-    .grid {display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start}
-    .stat{background:linear-gradient(90deg,#ff6fb5,#8b5cf6);padding:14px;border-radius:12px;color:#02121a;font-weight:800;text-align:center}
-    @media (max-width:900px){ .grid{grid-template-columns:1fr} }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Financeiro</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .container { max-width: 900px; margin: 120px auto; padding: 20px; color: white; }
+        h1 { font-size: 36px; }
+        p { line-height: 1.6; }
+    </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="index.html">Início</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="projetos.html">Projetos</a>
-      <a href="contactos.html">Contactos</a>
+
+<header>
+    <nav class="navbar">
+        <div class="logo">Noevas10</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="sobre.html">Sobre Mim</a></li>
+            <li><a href="projetos.html">Projetos</a></li>
+            <li><a href="contactos.html">Contactos</a></li>
+            <li><a href="profile.html">Perfil</a></li>
+        </ul>
     </nav>
-  </header>
+</header>
 
-  <section class="hero">
+<div class="container">
     <h1>Projeto Financeiro</h1>
-    <p>Estruturar finanças, criar liberdade e proteger o teu futuro com passos claros e aplicáveis.</p>
-  </section>
 
-  <main class="wrap-narrow">
-    <div class="panel">
-      <div class="grid">
-        <div>
-          <h2>Descrição</h2>
-          <p>Este projeto prepara-te para tomar decisões financeiras inteligentes: gestão, poupança e investimento com baixo risco inicial.</p>
+    <p>
+        O Projeto Financeiro tem como objetivo ajudar-te a organizar a tua vida económica,
+        definindo metas claras e desenvolvendo uma estratégia sustentável para o teu futuro.
+    </p>
 
-          <h3 style="margin-top:12px">Fases do programa</h3>
-          <ol style="line-height:1.6">
-            <li>Diagnóstico financeiro: rendimentos, despesas e hábitos.</li>
-            <li>Fundo de emergência e orçamento mensal automático.</li>
-            <li>Estratégias de investimento simples (ETFs, poupança orientada).</li>
-            <li>Plano de crescimento de rendimento e redução de risco.</li>
-          </ol>
+    <a href="criar-projeto.html" class="btn">Criar um Projeto Financeiro</a>
+</div>
 
-          <h3 style="margin-top:12px">Resultados esperados</h3>
-          <ul style="line-height:1.6">
-            <li>Controle financeiro claro</li>
-            <li>Poupanças com objetivo definido</li>
-            <li>Plano de investimento inicial em 6-12 meses</li>
-          </ul>
-
-          <div style="margin-top:16px">
-            <a class="btn-cta btn-primary" href="contactos.html">Quero Apoio</a>
-            <a class="btn-cta btn-ghost" href="projetos.html">Voltar</a>
-          </div>
-        </div>
-
-        <aside>
-          <div class="stat">Meta 1: Fundo de Emergência — 3 meses</div>
-          <div style="height:12px"></div>
-          <div class="stat" style="background:linear-gradient(90deg,#3aa8ff,#8b5cf6)">Meta 2: Iniciar Investimento</div>
-        </aside>
-      </div>
-    </div>
-  </main>
-
-  <footer style="text-align:center;padding:26px;color:rgba(255,255,255,0.6)">© <span id="y2"></span> Noevas10</footer>
-  <script>document.getElementById('y2').textContent = new Date().getFullYear();</script>
 </body>
 </html>

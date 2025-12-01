@@ -3,54 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto Financeiro</title>
+    <title>Perguntas – Projeto Financeiro</title>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        .container { max-width: 900px; margin: auto; padding: 30px; }
+        .pergunta { margin-bottom: 20px; }
+        textarea { width: 100%; height: 80px; padding: 10px; border-radius: 6px; }
+        button { padding: 12px 18px; cursor: pointer; margin-top: 20px; }
+        #analiseBox { display:none; margin-top: 40px; padding: 20px; background:#111; border-radius:8px; }
+    </style>
 </head>
+
 <body>
 
-<nav class="navbar">
-    <div class="logo">Noevas10</div>
-    <ul class="nav-links">
-        <li><a href="index.html">Início</a></li>
-        <li><a href="sobre.html">Sobre Mim</a></li>
-        <li><a href="projetos.html" class="active">Projetos</a></li>
-        <li><a href="contactos.html">Contactos</a></li>
-        <li><a href="login.html" id="loginBtn">Login</a></li>
-        <li><a href="profile.html" id="profileBtn" style="display:none;">Perfil</a></li>
-    </ul>
-</nav>
+<h1 style="text-align:center;">Projeto Financeiro – Perguntas</h1>
 
 <div class="container">
-    <h1>Projeto Financeiro</h1>
+    <form id="formProjeto">
+        <h3>Responde com sinceridade às 20 perguntas:</h3>
 
-    <h2>Gestão Inteligente do Dinheiro</h2>
-    <p>
-        Um bom projeto financeiro começa com a análise do teu estado atual:
-        rendimento, despesas, dívidas e hábitos. Sem clareza, não existe evolução.
-    </p>
+        <div id="perguntasContainer"></div>
 
-    <h2>Planeamento Financeiro</h2>
-    <p>
-        Define metas como poupança mensal, eliminação de dívidas, construção de reserva
-        de emergência, e investimento a longo prazo.
-    </p>
+        <button type="button" onclick="submeterRespostas()">Submeter</button>
+        <button type="button" id="btnAnalise" style="display:none;" onclick="gerarAnalise()">Obter Análise</button>
+        <button type="button" id="btnPDF" style="display:none;" onclick="downloadPDF()">Gerar PDF</button>
+    </form>
 
-    <h2>Investimentos</h2>
-    <p>
-        Uma vida financeira saudável exige multiplicar dinheiro. Exemplos:
-        • Certificados
-        • ETFs
-        • Ações globais
-        • Imobiliário
-        Investir sem conhecimento é risco; investir com estratégia é liberdade.
-    </p>
-
-    <h2>Disciplina e Consistência</h2>
-    <p>
-        Não se trata de ganhar muito, mas de saber gerir. A disciplina transforma qualquer salário num plano de crescimento.
-    </p>
+    <div id="analiseBox"></div>
 </div>
 
-<script src="auth.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+
+<script>
+    const perguntas = [
+        "1. Qual é a tua principal meta financeira neste momento?",
+        "2. Quanto dinheiro consegues poupar por mês?",
+        "3. Tens dívidas? Quais e em que valores?",
+        "4. Já tens fundo de emergência? Quanto?",
+        "5. Como classificas os teus conhecimentos de investimento?",
+        "6. Quais são os teus maiores desafios financeiros?",
+        "7. O que te motiva a melhorar a tua vida financeira?",
+        "8. Tens algum objetivo com prazo definido?",
+        "9. Como geres atualmente as tuas despesas?",
+        "10. Tens hábitos que prejudicam a tua vida financeira?",
+        "11. Queres atingir independência financeira?",
+        "12. Já investes? Em quê?",
+        "13. Qual é a tua maior prioridade financeira?",
+        "14. O teu rendimento atual é suficiente?",
+        "15. Tens capacidade de aumentar a tua renda?",
+        "16. Como te sentes em relação ao dinheiro?",
+        "17. Estás disposto a mudar hábitos?",
+        "18. O que te impede de poupar mais?",
+        "19. Como te imaginas financeiramente daqui a 5 anos?",
+        "20. O que achas que precisas de aprender?"
+    ];
+
+    const container = document.getElementById("perguntasContainer");
+
+    perguntas.forEach(p => {
+        container.innerHTML += `
+            <div class="pergunta">
+                <label>${p}</label>
+                <textarea name="resposta"></textarea>
+            </div>`;
+    });
+
+    let respostasGuardadas = [];
+
+    function submeterRespostas() {
+        const respostas = [...document.querySelectorAll("textarea")]
+            .map(t => t.value.trim());
+
+        if (respostas.includes("")) {
+            alert("⚠️ Responde a todas as perguntas antes de submeter.");
+            return;
+        }
+
+        respostasGuardadas = respostas;
+
+        document.getElementById("btnAnalise").style.display = "inline-block";
+        alert("✔ Respostas submetidas! Agora podes obter a análise.");
+    }
+
+    function gerarAnalise() {
+        let analise = "<h2>Análise do Teu Projeto Financeiro</h2>";
+
+        // Exemplo básico de análise automática
+        if (respostasGuardadas[1] < 50) {
+            analise += "<p>• Poupança muito baixa → Começa com 10% do rendimento.</p>";
+        } else {
+            analise += "<p>• Boa capacidade de poupança. Mantém a consistência.</p>";
+        }
+
+        if (respostasGuardadas[2].length > 5) {
+            analise += "<p>• Tens dívidas → Prioridade: quitar as que têm maior juro.</p>";
+        }
+
+        if (respostasGuardadas[3] < 500) {
+            analise += "<p>• Fundo de emergência insuficiente → objetivo mínimo: 1.000€.</p>";
+        }
+
+        analise += "<p>• Sugestão final: Estuda ETFs e investimentos de baixo risco para crescer a longo prazo.</p>";
+
+        const box = document.getElementById("analiseBox");
+        box.style.display = "block";
+        box.innerHTML = analise;
+
+        document.getElementById("btnPDF").style.display = "inline-block";
+    }
+
+    function downloadPDF() {
+        var doc = new jsPDF();
+
+        doc.text("Projeto Financeiro - Análise", 10, 10);
+
+        respostasGuardadas.forEach((r, i) => {
+            doc.text(`${i+1}. ${r.substring(0,60)}`, 10, 20 + (i*7));
+        });
+
+        doc.save("analise-projeto-financeiro.pdf");
+    }
+
+</script>
+
 </body>
 </html>

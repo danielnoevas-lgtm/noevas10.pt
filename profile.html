@@ -2,9 +2,75 @@
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Perfil</title>
 <link rel="stylesheet" href="style.css">
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.profile-container {
+    max-width: 600px;
+    margin: 140px auto;
+    padding: 30px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.profile-container h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+    color: #fff;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+label {
+    margin-bottom: 6px;
+    color: #ddd;
+    font-size: 15px;
+}
+
+input, select {
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    font-size: 15px;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+}
+
+input::placeholder {
+    color: #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #6a00ff;
+    color: #fff;
+    font-size: 17px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #5800d4;
+}
+</style>
+
 </head>
 
 <body>
@@ -19,90 +85,102 @@
       <li><a href="contactos.html">Contactos</a></li>
 
       <li id="loginLink"><a href="login.html">Login</a></li>
-      <li id="profileLink" style="display:none;" class="active"><a href="profile.html">Perfil</a></li>
-      <li id="logoutLink" style="display:none;"><a href="#" onclick="logoutHandler(); return false;">Sair</a></li>
+      <li id="profileLink" style="display:none;"><a href="profile.html" class="active">Perfil</a></li>
+      <li id="logoutLink" style="display:none;"><a href="#" onclick="logoutHandler()">Sair</a></li>
     </ul>
   </div>
 </nav>
 
-<main class="container" style="padding-top:120px;">
-  <h1>O Meu Perfil</h1>
+<div class="profile-container">
+    <h1>O Meu Perfil</h1>
 
-  <form id="profileForm" class="profile-form">
+    <div class="form-group">
+        <label>Nome:</label>
+        <input type="text" id="nome" placeholder="O teu nome">
+    </div>
 
-      <label>Nome:</label>
-      <input type="text" id="nome">
+    <div class="form-group">
+        <label>Email:</label>
+        <input type="email" id="email" placeholder="O teu email">
+    </div>
 
-      <label>Email:</label>
-      <input type="email" id="email">
+    <div class="form-group">
+        <label>Idade:</label>
+        <input type="number" id="idade" placeholder="Idade">
+    </div>
 
-      <label>Idade:</label>
-      <input type="number" id="idade">
+    <div class="form-group">
+        <label>Profissão:</label>
+        <input type="text" id="profissao" placeholder="Profissão">
+    </div>
 
-      <label>Profissão:</label>
-      <input type="text" id="profissao">
+    <div class="form-group">
+        <label>Telefone:</label>
+        <input type="text" id="telefone" placeholder="Número de telefone">
+    </div>
 
-      <label>Telefone:</label>
-      <input type="text" id="telefone">
+    <div class="form-group">
+        <label>Localidade:</label>
+        <select id="localidade">
+            <option value="">Selecione</option>
+            <option>Lisboa</option>
+            <option>Porto</option>
+            <option>Braga</option>
+            <option>Aveiro</option>
+            <option>Coimbra</option>
+            <option>Setúbal</option>
+            <option>Faro</option>
+            <option>Évora</option>
+            <option>Leiria</option>
+            <option>Viseu</option>
+        </select>
+    </div>
 
-      <label>Localidade:</label>
-      <select id="localidade">
-        <option value="">Selecione</option>
-        <option>Lisboa</option>
-        <option>Porto</option>
-        <option>Coimbra</option>
-        <option>Braga</option>
-        <option>Setúbal</option>
-        <option>Faro</option>
-        <option>Aveiro</option>
-      </select>
+    <div class="form-group">
+        <label>Frase Motivadora:</label>
+        <input type="text" id="frase" placeholder="A tua frase">
+    </div>
 
-      <label>Frase Motivadora:</label>
-      <textarea id="frase" rows="3"></textarea>
-
-      <button type="button" class="button" onclick="guardarPerfil()">Guardar</button>
-
-  </form>
-</main>
+    <button onclick="guardarPerfil()">Guardar</button>
+</div>
 
 <script>
 (function(){
-  const logged = localStorage.getItem("site_session");
-
-  if(!logged){
-      window.location.href = "login.html";
-      return;
+  const user = localStorage.getItem("site_session");
+  if(user){
+    document.getElementById("loginLink").style.display = "none";
+    document.getElementById("profileLink").style.display = "inline-block";
+    document.getElementById("logoutLink").style.display = "inline-block";
   }
-
-  document.getElementById("loginLink").style.display = "none";
-  document.getElementById("profileLink").style.display = "inline-block";
-  document.getElementById("logoutLink").style.display = "inline-block";
-
-  const dados = JSON.parse(localStorage.getItem("user_profile") || "{}");
-
-  document.getElementById("nome").value = dados.nome || "";
-  document.getElementById("email").value = dados.email || "";
-  document.getElementById("idade").value = dados.idade || "";
-  document.getElementById("profissao").value = dados.profissao || "";
-  document.getElementById("telefone").value = dados.telefone || "";
-  document.getElementById("localidade").value = dados.localidade || "";
-  document.getElementById("frase").value = dados.frase || "";
-
 })();
 
 function guardarPerfil(){
-  const dados = {
-    nome: document.getElementById("nome").value,
-    email: document.getElementById("email").value,
-    idade: document.getElementById("idade").value,
-    profissao: document.getElementById("profissao").value,
-    telefone: document.getElementById("telefone").value,
-    localidade: document.getElementById("localidade").value,
-    frase: document.getElementById("frase").value
-  };
+    const dados = {
+        nome: nome.value,
+        email: email.value,
+        idade: idade.value,
+        profissao: profissao.value,
+        telefone: telefone.value,
+        localidade: localidade.value,
+        frase: frase.value
+    };
 
-  localStorage.setItem("user_profile", JSON.stringify(dados));
-  alert("Perfil atualizado com sucesso!");
+    localStorage.setItem("perfilUser", JSON.stringify(dados));
+    alert("Perfil guardado com sucesso!");
+}
+
+window.onload = function(){
+    const data = localStorage.getItem("perfilUser");
+    if(data){
+        const perfil = JSON.parse(data);
+        nome.value = perfil.nome || "";
+        email.value = perfil.email || "";
+        idade.value = perfil.idade || "";
+        profissao.value = perfil.profissao || "";
+        telefone.value = perfil.telefone || "";
+        localidade.value = perfil.localidade || "";
+        frase.value = perfil.frase || "";
+    }
 }
 </script>
 

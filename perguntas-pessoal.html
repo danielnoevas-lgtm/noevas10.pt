@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <title>Perguntas — Projeto Pessoal</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+<nav class="navbar container"><div class="logo">Noevas10</div><div class="nav-links"><a href="index.html">Página Inicial</a><a href="sobre.html">Sobre Mim</a><a href="projetos.html">Projetos</a><a href="contactos.html" class="active">Contactos</a><a href="area.html">Área Pessoal</a></div></nav>
+
+<main class="container">
+  <h1>Projeto Pessoal — 20 Perguntas</h1>
+  <form id="form">
+    <div id="perguntas"></div>
+    <div class="row">
+      <button type="button" class="btn" id="saveBtn">Submeter & Guardar</button>
+      <button type="button" class="btn secondary" id="analiseBtn" style="display:none">Obter Análise</button>
+      <button type="button" class="btn secondary" id="pdfBtn" style="display:none">Gerar PDF</button>
+      <button type="button" class="btn secondary" id="waBtn" style="display:none">Enviar p/ WhatsApp</button>
+    </div>
+  </form>
+  <div id="analiseBox" class="card" style="display:none;margin-top:18px"></div>
+</main>
+
+<script>
+const perguntas = [
+"Como descreves o teu estado emocional atual?",
+"Quais são as tuas duas maiores qualidades?",
+"Quais são duas coisas que desejas melhorar?",
+"Que hábito diário te faria mais produtivo?",
+"Como é a tua rotina matinal?",
+"Quais são os teus maiores medos?",
+"Que relações precisas melhorar?",
+"Como defines sucesso pessoal?",
+"O que te motiva a levantar todos os dias?",
+"Quais são os teus objetivos para os próximos 6 meses?",
+"Como lidaste com o maior desafio da vida?",
+"Que práticas tens para gerir stress?",
+"O que mais valorizas nas tuas relações?",
+"Que livro ou recurso te mudou a vida?",
+"Como te organizas ao nível de tempo?",
+"Que mudança pequena podes fazer hoje?",
+"Como medes o teu bem-estar?",
+"O que te dá energia?",
+"O que gostarias de aprender nos próximos 12 meses?",
+"Se tivesses 3 meses livres, o que farias?"
+];
+
+const container = document.getElementById('perguntas');
+perguntas.forEach((p,i)=>{
+  const el=document.createElement('div');el.className='pergunta';
+  el.innerHTML=`<label>${i+1}. ${p}</label><textarea name="q${i}"></textarea>`;
+  container.appendChild(el);
+});
+
+document.getElementById('saveBtn').addEventListener('click',()=>{
+  const values={};document.querySelectorAll('#perguntas textarea').forEach((ta,i)=>values['q'+i]=ta.value.trim());
+  localStorage.setItem('respostas_pessoal',JSON.stringify(values));document.getElementById('analiseBtn').style.display='inline-block';document.getElementById('pdfBtn').style.display='inline-block';document.getElementById('waBtn').style.display='inline-block';alert('Guardado!');
+});
+document.getElementById('analiseBtn').addEventListener('click',()=>{
+  const data=JSON.parse(localStorage.getItem('respostas_pessoal')||'{}');let vals=Object.values(data).join(' ').toLowerCase();let s='<h3>Resumo & Recomendações</h3>'; if(vals.includes('stress')) s+='<p>⚠️ Apresentas stress — prioriza sono e micro-pausas.</p>'; if(vals.includes('rotina')) s+='<p>✅ Rotina definida — mantém consistência.</p>'; s+='<p>➡️ Ação: escolhe 1 hábito para melhorar nas próximas 2 semanas.</p>'; document.getElementById('analiseBox').innerHTML=s;document.getElementById('analiseBox').style.display='block';
+});
+document.getElementById('pdfBtn').addEventListener('click',async ()=>{
+  const data=JSON.parse(localStorage.getItem('respostas_pessoal')||'{}');const { jsPDF } = window.jspdf;const doc = new jsPDF();doc.setFontSize(14);doc.text('Projeto Pessoal - Respostas',10,14);let y=24;Object.keys(data).forEach((k,i)=>{const text=`${i+1}. ${data[k]}`;doc.setFontSize(11);doc.text(doc.splitTextToSize(text,180),10,y);y+=8+Math.ceil(text.length/80)*6;if(y>270){doc.addPage();y=20;}});doc.save('projeto-pessoal.pdf');
+});
+document.getElementById('waBtn').addEventListener('click',()=>{const data=JSON.parse(localStorage.getItem('respostas_pessoal')||'{}');let txt='Projeto Pessoal - Respostas:%0A%0A';Object.keys(data).forEach((k,i)=> txt+=`${i+1}. ${data[k]}%0A%0A`);window.open(`https://wa.me/351931760077?text=${encodeURIComponent(txt)}`,'_blank');});
+</script>

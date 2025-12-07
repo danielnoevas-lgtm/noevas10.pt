@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <title>Sobre Mim — Noevas10</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .tabs{display:flex;gap:8px;margin-bottom:18px}
+    .tabs button{padding:8px 12px;border-radius:10px;border:none;background:transparent;color:var(--muted);cursor:pointer}
+    .tabs button.active{background:var(--glass);color:#fff}
+    .tab-content{margin-top:12px}
+  </style>
+</head>
+<body>
+<nav class="navbar container">
+  <div class="logo">Noevas10</div>
+  <div class="nav-links">
+    <a href="index.html">Página Inicial</a>
+    <a class="active" href="sobre.html">Sobre Mim</a>
+    <a href="projetos.html">Projetos</a>
+    <a href="contactos.html">Contactos</a>
+    <a href="area.html">Área Pessoal</a>
+  </div>
+</nav>
+
+<main class="container">
+  <h1>Sobre Mim</h1>
+
+  <div class="card">
+    <p>Sou <strong>Daniel Noevas</strong>. O meu foco é ajudar pessoas a organizar a sua vida em 3 domínios essenciais: pessoal, profissional e financeiro. Faço isto através de métodos práticos, perguntas guiadas e pequenos planos de ação.</p>
+
+    <div class="tabs" role="tablist">
+      <button class="active" data-tab="about">Quem sou</button>
+      <button data-tab="project">O meu projeto</button>
+      <button data-tab="daily">Como eu gero o meu dia</button>
+    </div>
+
+    <div id="about" class="tab-content">
+      <h3>Quem sou</h3>
+      <p>Sou apaixonado por sistemas, hábitos e estruturas que transformam intenções em resultados. Estudei técnicas de produtividade, finanças pessoais e coaching prático — e adaptei isto a um método direto e aplicável.</p>
+      <p>Gosto de clareza, planeamento e ação diária. Acredito que pequenas rotinas produzem grandes resultados.</p>
+    </div>
+
+    <div id="project" class="tab-content" style="display:none">
+      <h3>O meu projeto</h3>
+      <p>O projeto central que desenvolvo baseia-se em:</p>
+      <ul>
+        <li><strong>Diagnóstico</strong> — perguntas que mostram a realidade atual.</li>
+        <li><strong>Plano</strong> — metas semanais e mensais.</li>
+        <li><strong>Acompanhamento</strong> — rotinas simples e indicadores de progresso.</li>
+      </ul>
+      <p>Diversas pessoas que já passaram pelos projetos conseguem resultados rápidos: melhor organização financeira, clareza de carreira e maior bem-estar pessoal.</p>
+    </div>
+
+    <div id="daily" class="tab-content" style="display:none">
+      <h3>Como eu gero o meu dia — dicas práticas</h3>
+      <ol>
+        <li>Planeio a manhã na noite anterior: 3 tarefas principais.</li>
+        <li>Rotina de 30 minutos de foco — sem interrupções.</li>
+        <li>Micro-pausas programadas (25/5 ou 50/10).</li>
+        <li>Revisão rápida ao fim do dia: o que correu bem, o que ajustar.</li>
+        <li>Hábitos semanais: uma sessão de aprendizagem e um check financeiro.</li>
+      </ol>
+      <p>Estas dicas podem ser adaptadas a ti — a chave é consistência, não perfeição.</p>
+    </div>
+  </div>
+</main>
+
+<script>
+  document.querySelectorAll('.tabs button').forEach(btn=>{
+    btn.addEventListener('click',e=>{
+      document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+      e.target.classList.add('active');
+      const id = e.target.getAttribute('data-tab');
+      document.querySelectorAll('.tab-content').forEach(c=>c.style.display='none');
+      document.getElementById(id).style.display='block';
+    });
+  });
+</script>
+</body>
+</html>

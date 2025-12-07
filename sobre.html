@@ -1,39 +1,173 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Sobre Mim - Noevas10</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Sobre Mim</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0a0f24, #1e2a47);
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 950px;
+            margin: 40px auto;
+            line-height: 1.8;
+        }
+
+        h1 {
+            color: #8cb4ff;
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #b9d4ff;
+            margin-top: 45px;
+            border-left: 4px solid #5a7bff;
+            padding-left: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background: #ffffff10;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .highlight {
+            color: #c7ddff;
+            font-weight: bold;
+        }
+
+        .steps span {
+            display: inline-block;
+            background: #5a7bff55;
+            padding: 10px 18px;
+            margin: 8px 0;
+            border-radius: 18px;
+            font-size: 16px;
+        }
+    </style>
 </head>
+
 <body>
 
-  <nav class="glass-nav">
-    <div class="nav-container">
-      <div class="logo">Noevas10</div>
-      <ul class="nav-links">
-        <li><a href="index.html">Início</a></li>
-        <li><a href="sobre.html" class="active">Sobre Mim</a></li>
-        <li><a href="projetos.html">Projetos</a></li>
-        <li><a href="contactos.html">Contactos</a></li>
-        <li id="loginLink"><a href="login.html">Login</a></li>
-        <li id="profileLink" style="display:none;"><a href="profile.html">Perfil</a></li>
-        <li id="logoutLink" style="display:none;"><a href="#" onclick="logoutHandler();return false;">Sair</a></li>
-      </ul>
-      <div class="nav-cta"><a href="login.html">Entrar</a></div>
+<div class="container">
+
+    <h1>Sobre Mim</h1>
+
+    <p>
+        O meu nome é <span class="highlight">Daniel Noevas</span> e acredito profundamente que a vida melhora quando nós melhoramos.
+        Sempre tive uma enorme vontade de evoluir, de descobrir mais sobre mim, e de ajudar outras pessoas a perceberem que também podem transformar completamente o seu caminho.
+    </p>
+
+    <h2>A Minha História</h2>
+
+    <div class="card">
+        <p>
+            Cresci com a sensação de que a vida é feita de escolhas — escolhas pequenas que se transformam em grandes resultados. 
+            Desde cedo, percebi que algumas pessoas vivem no piloto automático, sem direção, sem objetivos e sem propósito.
+        </p>
+
+        <p>
+            Eu decidi seguir o caminho contrário:  
+            <span class="highlight">questionar, aprender, evoluir e construir a minha própria visão de futuro</span>.
+        </p>
+
+        <p>
+            Passei por momentos de dúvidas, mudanças, desafios e reinícios — e foi exatamente isso que me fez desenvolver métodos, perguntas e sistemas que hoje utilizo para ajudar muitas pessoas a clarearem a sua vida.
+        </p>
+
+        <p>
+            Acredito que todos temos a capacidade de nos reinventar.  
+            Não importa onde estás agora. Importa onde queres chegar.
+        </p>
     </div>
-  </nav>
 
-  <main class="container" style="padding-top:120px">
-    <section>
-      <h1>Quem Sou</h1>
-      <p>Olá! O meu nome é Daniel e dedico o meu tempo a ajudar jovens a construírem um futuro mais organizado, seguro e com propósito.</p>
+    <h2>Os Meus Objetivos</h2>
 
-      <h2>Missão</h2>
-      <p>Ajudar jovens a desenvolver vida, finanças e carreira com clareza, disciplina e estratégia.</p>
-    </section>
-  </main>
+    <div class="card">
+        <p>Os meus objetivos representam a pessoa que estou a construir e a vida que quero alcançar:</p>
 
-  <script src="script.js"></script>
+        <ul>
+            <li><span class="highlight">Ser financeiramente independente</span>, com múltiplas fontes de rendimento estável.</li>
+            <li>Construir uma carreira sólida com impacto real nas pessoas.</li>
+            <li>Ajudar indivíduos a transformarem a sua vida através de autoconhecimento e planeamento.</li>
+            <li>Desenvolver projetos digitais úteis, práticos e acessíveis a todos.</li>
+            <li>Criar um estilo de vida equilibrado entre trabalho, saúde, relações e propósito.</li>
+            <li>Inspirar outras pessoas a acreditarem que podem ir mais longe do que imaginam.</li>
+            <li>Continuar a evoluir todos os dias, ao meu ritmo e com consistência.</li>
+        </ul>
+    </div>
+
+    <h2>O Meu Método</h2>
+
+    <div class="card">
+        <p>
+            Ao longo do tempo, desenvolvi um método simples mas extremamente eficaz, baseado em 4 pilares principais:
+        </p>
+
+        <h3>Pilar 1 — Clareza</h3>
+        <p>
+            A maioria das pessoas não sabe o que quer porque nunca parou para se ouvir.  
+            O meu método começa por perguntas diretas que revelam quem tu és hoje e o que realmente procuras.
+        </p>
+
+        <h3>Pilar 2 — Estrutura</h3>
+        <p>
+            Sem estrutura, os objetivos ficam “no ar”.  
+            Crio sistemas, listas, planos e exercícios que ajudam a organizar a vida financeira, pessoal e profissional.
+        </p>
+
+        <h3>Pilar 3 — Ação</h3>
+        <p>
+            A ação transforma tudo. Pequenos passos diários criam resultados enormes.  
+            Foco-me em estratégias fáceis, práticas e aplicáveis imediatamente.
+        </p>
+
+        <h3>Pilar 4 — Consistência</h3>
+        <p>
+            O sucesso não depende de motivação, depende de consistência.  
+            Por isso, o meu método inclui hábitos, rotinas e acompanhamento contínuo.
+        </p>
+
+        <div class="steps">
+            <span>Perceber onde estás</span><br>
+            <span>Definir o teu objetivo real</span><br>
+            <span>Criar um plano simples</span><br>
+            <span>Ação diária</span><br>
+            <span>Análise e evolução</span><br>
+        </div>
+    </div>
+
+    <h2>A Minha Visão Para o Futuro</h2>
+
+    <p>
+        O meu foco é continuar a crescer como pessoa, como profissional e como ser humano.  
+        Quero construir uma vida completa, equilibrada e inspiradora — e ajudar-te a fazer o mesmo.
+    </p>
+
+    <p class="highlight">
+        Se estás aqui, significa que já deste o primeiro passo.  
+        Agora, vamos crescer juntos.
+    </p>
+
+</div>
+
 </body>
 </html>

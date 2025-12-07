@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <title>Perguntas — Projeto Profissional</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+<nav class="navbar container"><div class="logo">Noevas10</div><div class="nav-links"><a href="index.html">Página Inicial</a><a href="sobre.html">Sobre Mim</a><a href="projetos.html">Projetos</a><a href="contactos.html">Contactos</a><a href="area.html">Área Pessoal</a></div></nav>
+
+<main class="container">
+  <h1>Projeto Profissional — 20 Perguntas</h1>
+  <form id="form"><div id="perguntas"></div>
+    <div class="row">
+      <button type="button" class="btn" id="saveBtn">Submeter & Guardar</button>
+      <button type="button" class="btn secondary" id="analiseBtn" style="display:none">Obter Análise</button>
+      <button type="button" class="btn secondary" id="pdfBtn" style="display:none">Gerar PDF</button>
+      <button type="button" class="btn secondary" id="waBtn" style="display:none">Enviar p/ WhatsApp</button>
+    </div>
+  </form>
+  <div id="analiseBox" class="card" style="display:none;margin-top:18px"></div>
+</main>
+
+<script>
+const perguntas = [
+"Onde estás na tua carreira neste momento?",
+"Qual é a tua meta profissional para 1 ano?",
+"Qual é a tua meta profissional para 5 anos?",
+"Quais competências te faltam?",
+"Que formação estás disposto a fazer?",
+"Tens portefólio ou provas de trabalho?",
+"Como descreves o teu networking atualmente?",
+"Estás aberto a oportunidades fora da cidade/país?",
+"Quais tarefas gostas de fazer no trabalho?",
+"O que te desmotiva no trabalho atual?",
+"Quais são os teus 3 maiores sucessos profissionais?",
+"Tens mentor ou conselheiro profissional?",
+"Fazes acompanhamento de objetivos de carreira?",
+"Como avalias a tua comunicação e liderança?",
+"Que salário/pretensão tens idealmente?",
+"Qual é o passo imediato para evoluir?",
+"Como lidas com feedback?",
+"Que impacto queres causar na tua área?",
+"Que tipo de trabalho te faz sentir realizado?",
+"O que estás disposto a sacrificar para evoluir?"
+];
+
+const container=document.getElementById('perguntas');
+perguntas.forEach((p,i)=>{const el=document.createElement('div');el.className='pergunta';el.innerHTML=`<label>${i+1}. ${p}</label><textarea name="q${i}"></textarea>`;container.appendChild(el);});
+
+document.getElementById('saveBtn').addEventListener('click',()=>{
+  const values={};document.querySelectorAll('#perguntas textarea').forEach((ta,i)=>values['q'+i]=ta.value.trim());localStorage.setItem('respostas_profissional',JSON.stringify(values));document.getElementById('analiseBtn').style.display='inline-block';document.getElementById('pdfBtn').style.display='inline-block';document.getElementById('waBtn').style.display='inline-block';alert('Guardado!');
+});
+
+document.getElementById('analiseBtn').addEventListener('click',()=>{
+  const data=JSON.parse(localStorage.getItem('respostas_profissional')||'{}');let vals=Object.values(data).join(' ').toLowerCase();let s='<h3>Resumo & Recomendações</h3>'; if(vals.includes('mentor')||vals.includes('formação')) s+='<p>✅ Procura mentor e formação — excelente sinal de progressão.</p>'; if(vals.includes('network')) s+='<p>🔗 Fortalece o teu networking com eventos e contacto direto.</p>'; s+='<p>➡️ Ação: define 3 passos concretos para os próximos 30 dias.</p>'; document.getElementById('analiseBox').innerHTML=s;document.getElementById('analiseBox').style.display='block';
+});
+
+document.getElementById('pdfBtn').addEventListener('click', async ()=>{
+  const data=JSON.parse(localStorage.getItem('respostas_profissional')||'{}');const { jsPDF } = window.jspdf;const doc = new jsPDF();doc.setFontSize(14);doc.text('Projeto Profissional - Respostas',10,14);let y=24;Object.keys(data).forEach((k,i)=>{const text=`${i+1}. ${data[k]}`;doc.setFontSize(11);doc.text(doc.splitTextToSize(text,180),10,y);y+=8+Math.ceil(text.length/80)*6;if(y>270){doc.addPage();y=20;}});doc.save('projeto-profissional.pdf');
+});
+
+document.getElementById('waBtn').addEventListener('click',()=>{const data=JSON.parse(localStorage.getItem('respostas_profissional')||'{}');let txt='Projeto Profissional - Respostas:%0A%0A';Object.keys(data).forEach((k,i)=> txt+=`${i+1}. ${data[k]}%0A%0A`);window.open(`https://wa.me/351931760077?text=${encodeURIComponent(txt)}`,'_blank');});
+</script>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <title>Contactos — Noevas10</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar container"><div class="logo">Noevas10</div><div class="nav-links"><a href="index.html">Página Inicial</a><a href="sobre.html">Sobre Mim</a><a href="projetos.html">Projetos</a><a class="active" href="contactos.html">Contactos</a><a href="area.html">Área Pessoal</a></div></nav>
+
+<main class="container">
+  <h1>Contactos</h1>
+
+  <div class="card">
+    <h3>Contacta-me via WhatsApp</h3>
+    <p class="small">Número: <strong>+351 931 760 077</strong></p>
+    <p class="small">Clica no botão para enviar uma mensagem rápida.</p>
+    <div style="margin-top:12px" class="row">
+      <a class="btn" href="https://wa.me/351931760077?text=Ol%C3%A1%20Daniel%2C%20gostaria%20de%20mais%20informações." target="_blank">Enviar mensagem</a>
+    </div>
+  </div>
+
+  <div style="margin-top:18px" class="card">
+    <h3>Formulário rápido</h3>
+    <p>Preenche e envia diretamente para o WhatsApp</p>
+    <label>Nome</label><input type="text" id="nome">
+    <label>Idade</label><input type="text" id="idade">
+    <label>Localidade (cidade)</label><input type="text" id="localidade">
+    <label>Profissão</label><input type="text" id="profissao">
+    <label>Mensagem</label><textarea id="mensagem" placeholder="Diz-nos em poucas linhas o que pretendes"></textarea>
+
+    <button class="btn" id="sendForm">Enviar para WhatsApp</button>
+  </div>
+</main>
+
+<script>
+document.getElementById('sendForm').addEventListener('click', function(){
+  const nome=document.getElementById('nome').value||'--';
+  const idade=document.getElementById('idade').value||'--';
+  const localidade=document.getElementById('localidade').value||'--';
+  const profissao=document.getElementById('profissao').value||'--';
+  const mensagem=document.getElementById('mensagem').value||'--';
+  const phone='351931760077';
+  const text = `Contacto via site%0ANome: ${nome}%0AIdade: ${idade}%0ALocalidade: ${localidade}%0AProfissão: ${profissao}%0AMensagem: ${mensagem}`;
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`,'_blank');
+});
+</script>

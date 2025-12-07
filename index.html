@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <title>Noevas10 — Início</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .fade-in {animation:fadeIn 1s ease both}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+    .sparkle{width:220px;height:220px;border-radius:18px;background:linear-gradient(135deg,rgba(127,92,255,0.15),rgba(58,160,255,0.08));display:flex;align-items:center;justify-content:center}
+    .sparkle h2{color:#fff;margin:0}
+    .feature{display:flex;gap:12px;align-items:flex-start}
+  </style>
+</head>
+<body>
+  <nav class="navbar container">
+    <div class="logo">Noevas10</div>
+    <div class="nav-links">
+      <a href="index.html" class="active">Página Inicial</a>
+      <a href="sobre.html">Sobre Mim</a>
+      <a href="projetos.html">Projetos</a>
+      <a href="contactos.html">Contactos</a>
+      <a href="area.html">Área Pessoal</a>
+    </div>
+    <div class="mobile-nav">
+      <a href="login.html" class="header-cta">Entrar</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-left fade-in">
+        <h1 style="font-size:36px;margin:0 0 12px 0">Transforma a tua vida — Pessoal, Profissional e Financeira</h1>
+        <p class="small">Planos práticos, perguntas guiadas, análises e suporte para criares um plano real e começar já.</p>
+        <div style="margin-top:18px" class="row">
+          <a href="criar-projeto.html" class="big-cta">Começar o Meu Projeto</a>
+          <a href="sobre.html" class="btn secondary">Saber mais</a>
+        </div>
+
+        <div style="margin-top:22px" class="grid">
+          <div class="project-card">
+            <h3>Vida Pessoal</h3>
+            <p class="small">Autoconhecimento, rotina e bem-estar.</p>
+          </div>
+          <div class="project-card">
+            <h3>Vida Profissional</h3>
+            <p class="small">Carreira, competências e networking.</p>
+          </div>
+          <div class="project-card">
+            <h3>Vida Financeira</h3>
+            <p class="small">Orçamento, poupança e investimento.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right fade-in">
+        <div class="sparkle card">
+          <h2>Começa hoje</h2>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top:36px" class="card">
+      <div class="section-title">O que vais encontrar</div>
+      <div class="grid">
+        <div class="project-card">
+          <h3>Guias práticos</h3>
+          <p class="small">Textos, dicas e exercícios para cada área.</p>
+        </div>
+        <div class="project-card">
+          <h3>Projetos personalizados</h3>
+          <p class="small">20 perguntas por projeto para desenhar um plano.</p>
+        </div>
+        <div class="project-card">
+          <h3>Análises e PDF</h3>
+          <p class="small">Gera um PDF do teu projeto e recebe análises básicas automatizadas.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      © Noevas10 — Desenvolvimento pessoal, profissional e financeiro
+    </div>
+  </main>
+</body>
+</html>
